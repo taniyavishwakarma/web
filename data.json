@@ -1,0 +1,41 @@
+{
+  "profile": {
+    "name": "Taniya Vishwakarma",
+    "title": "SDET II · AI-Driven Test Automation · Playwright Expert · Performance Testing (JMeter)",
+    "tagline": "QA Automation Engineer with 2+ years across UI, API, DB, functional & performance testing",
+    "phone": "+91 9340984708",
+    "email": "taniyavishwakarma8844@mail.com",
+    "linkedin": "[linkedin.com](https://www.linkedin.com/in/taniya-vishwakarma-7252a7203/)",
+    "website": "[taniyav.in](https://taniyav.in/)",
+    "avatar": "[placehold.co](https://placehold.co/400x400/0f172a/2dd4bf?text=TV)",
+    "summary": "QA Automation Engineer with 2+ years of experience in UI, API, DB, functional and performance testing, backed by software development experience in Java, Spring Boot and microservices. Strong in Playwright, TypeScript, Selenium, Cucumber/BDD, POM, REST/GraphQL, Snowflake, Postman and JMeter. Experienced across E-Commerce, Procurement & Supply Chain, Banking, Healthcare, Insurance and Logistics, with ownership of automation frameworks, RCA and release validation."
+  },
+  "skills": {
+    "Automation": ["Playwright","Selenium","Appium/iOS","Cucumber/BDD","POM"],
+    "Languages": ["Java","TypeScript","SQL","JavaScript","PHP"],
+    "API & Data": ["REST","GraphQL","Swagger/OpenAPI","Snowflake","MySQL","PostgreSQL"],
+    "Performance & DevOps": ["JMeter","Azure DevOps","CI/CD","Git","GitHub","Jira","Cortex"],
+    "Testing": ["Functional","E2E","Integration","Regression","Smoke","Sanity","Accessibility","Cross-Browser","RCA"]
+  },
+  "employment": [
+    { "company": "Xebia IT Architects India Private Limited", "role": "QA Automation Engineer | Consultant – SDET II", "duration": "Sept 2024 – Present" },
+    { "company": "Innobimb Infotech Pvt. Ltd.", "role": "Intern Software Developer", "duration": "Apr 2024 – Aug 2024", "tech": ["Java","Spring Boot","Microservices","ReactJS","JavaScript","PHP","MySQL","PostgreSQL","REST APIs"], "points": ["Built REST APIs and ReactJS applications for MES and inventory systems; optimized MySQL/PostgreSQL operations and developed VMD/LED device discovery."] },
+    { "company": "Technoduxx Pvt. Ltd.", "role": "Trainee Software Developer", "duration": "Aug 2023 – Mar 2024", "tech": ["OutSystems"], "points": ["Developed and enhanced web applications using OutSystems, implementing application workflows, UI components and data-driven functionality."] }
+  ],
+  "projects": [
+    { "company": "McKinsey & Company — SourceAI", "category": "Procurement & Supply Chain", "tech": ["Playwright","TypeScript","BDD/POM","REST","GraphQL","Swagger","Snowflake","Cortex","JMeter"], "description": "Developed a scalable UI automation framework for AI-driven sourcing, supplier onboarding, approvals, contracts and analytics; automated REST/GraphQL validation and reconciled UI/API results with Snowflake data. Used network interception/Cortex for troubleshooting and JMeter for performance validation, followed by RCA and release reporting." },
+    { "company": "Imperial Brands", "category": "E-Commerce · B2B & B2C", "tech": ["Playwright","TypeScript","BDD/POM","REST","Swagger","Salesforce SOQL","JMeter"], "description": "Owned automation for multi-country B2B/B2C e-commerce journeys with reusable MFA/session handling and data validation, delivering functional, regression, accessibility, cross-browser and performance coverage with RCA/JIRA defect management. Received the GEM Award for outstanding contribution." },
+    { "company": "Elekta", "category": "Healthcare · Salesforce", "tech": ["Playwright","TypeScript","Cucumber/BDD","POM"], "description": "Built a BDD-based Playwright automation framework from scratch; independently automated critical Salesforce healthcare workflows and delivered a POC for complex iFrame handling for reliable end-to-end automation." },
+    { "company": "Unity SFB Bank", "category": "Banking & Finance", "tech": ["JMeter","Performance Testing"], "description": "Engineered JMeter performance testing for critical banking services, including payment gateway integration, with load, stress and endurance testing up to 10,000+ concurrent threads." },
+    { "company": "Ryder", "category": "Logistics & Transportation", "tech": ["JMeter","Performance Testing","AWS EC2"], "description": "Developed and maintained 20+ JMeter scripts across multiple logistics features using CSV-driven datasets and distributed AWS EC2 execution, performing daily performance testing with 10,000+ concurrent users." },
+    { "company": "Chola Insurance", "category": "Mobile / iOS QA", "tech": ["Appium","iOS","Selenium","Java"], "description": "Performed Android/iOS functional and regression testing; developed and maintained Java-Appium UI automation for critical insurance workflows." },
+    { "company": "Novartis", "category": "Healthcare", "tech": ["Functional & Regression Testing"], "description": "Supported enterprise healthcare application validation through functional/regression testing, defect analysis and quality-focused delivery." }
+  ],
+  "certifications": ["AWS Cloud Practitioner","AWS Generative AI Professional","Claude AI MCP","EF SET English — 72/100 (C2 Proficient)"],
+  "achievements": ["GEM Award – Xebia","5th University Rank & 1st College Rank in Graduation","1st – HackerRank C Programming","4th & 5th – National Skipping"],
+  "education": [
+    { "degree": "MCA", "school": "NRI Institute of Technology", "score": "82%", "duration": "Jul 2023 – May 2025" },
+    { "degree": "BCA", "school": "Sant Hirdaram Girls College", "score": "82%", "duration": "May 2020 – Apr 2023" },
+    { "degree": "Class XII", "school": "Kendriya Vidyalaya Bairagarh", "score": "74%", "duration": "Apr 2019 – May 2020" }
+  ]
+}
