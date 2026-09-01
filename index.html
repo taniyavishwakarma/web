@@ -1,181 +1,393 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Taniya Vishwakarma | SDET & Automation QA Engineer</title>
-<meta name="description" content="Taniya Vishwakarma - SDET II, AI-Driven Test Automation, Playwright Expert, Performance Testing (JMeter)." />
-<link rel="preconnect" href="[fonts.googleapis.com](https://fonts.googleapis.com)">
-<link href="[fonts.googleapis.com](https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap)" rel="stylesheet">
-<link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Taniya Vishwakarma — SDET II, QA Automation Engineer, Playwright and Performance Testing specialist." />
+  <title>Taniya Vishwakarma | SDET II Portfolio</title>
+  <link rel="icon" href="assets/favicon.png" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <script defer src="script.js"></script>
 </head>
 <body>
-
-<header class="site-header">
-  <nav class="navbar">
-    <a href="#home" class="brand">TV<span>.</span></a>
-    <button class="nav-toggle" id="navToggle" aria-label="Menu">☰</button>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="#about">About</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#education">Education</a></li>
-      <li><a href="#contact" class="nav-cta">Book a Call</a></li>
-    </ul>
-  </nav>
-</header>
-
-<main>
-
-  <!-- HERO -->
-  <section id="home" class="hero">
-    <div class="hero-content">
-      <img id="avatarImg" class="avatar" src="[placehold.co](https://placehold.co/400x400/0f172a/2dd4bf?text=TV)" alt="Taniya Vishwakarma" />
-      <p class="eyebrow">SDET II · Automation QA Engineer</p>
-      <h1 id="heroName">Taniya Vishwakarma</h1>
-      <p id="heroTitle" class="hero-title"></p>
-      <p id="heroSummary" class="hero-summary"></p>
-      <div class="hero-actions">
-        <a href="#contact" class="btn btn-primary">Book a Call</a>
-        <a href="#projects" class="btn btn-ghost">View Work</a>
-        <a href="assets/Taniya-Vishwakarma-Resume.pdf" class="btn btn-ghost" download>Download Résumé</a>
+  <!-- Navigation: intentionally follows the clean Material Tailwind template structure -->
+  <header class="site-header">
+    <nav class="navbar container">
+      <a class="brand" href="#home" aria-label="Taniya Vishwakarma home">Taniya<span>.</span></a>
+      <button class="menu-toggle" aria-label="Open navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="nav-links" id="navLinks">
+        <a href="#home">Home</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#resume">Resume</a>
+        <a href="#contact">Contact</a>
       </div>
-      <div class="hero-links" id="heroLinks"></div>
-    </div>
-  </section>
+      <a class="nav-cta" href="mailto:taniyavishwakarma8844@mail.com?subject=Opportunity%20for%20Taniya%20Vishwakarma">Let's talk</a>
+    </nav>
+  </header>
 
-  <!-- ABOUT -->
-  <section id="about" class="section">
-    <h2 class="section-title">About</h2>
-    <p id="aboutText" class="about-text"></p>
-  </section>
+  <main>
+    <!-- HERO -->
+    <section class="hero section" id="home">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow">SDET II · QA AUTOMATION ENGINEER</div>
+          <h1>Building reliable software through <span>intelligent automation.</span></h1>
+          <p class="lead">
+            QA Automation Engineer with 2+ years of experience across UI, API, database,
+            functional and performance testing — with strong software development foundations
+            in Java, Spring Boot and microservices.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-dark" href="#projects">Explore my work <span>→</span></a>
+            <a class="btn btn-light" href="mailto:taniyavishwakarma8844@mail.com">Contact me</a>
+          </div>
+          <div class="hero-note">
+            <span class="status-dot"></span>
+            Open to SDET / QA Automation opportunities
+          </div>
+        </div>
 
-  <!-- EXPERIENCE -->
-  <section id="experience" class="section alt-bg">
-    <h2 class="section-title">Experience</h2>
-    <div id="experienceTimeline" class="timeline"></div>
-  </section>
-
-  <!-- PROJECTS -->
-  <section id="projects" class="section">
-    <h2 class="section-title">Client Engagements & Projects</h2>
-    <p class="section-sub">Delivered while consulting through Xebia IT Architects.</p>
-    <div id="projectsGrid" class="projects-grid"></div>
-  </section>
-
-  <!-- SKILLS -->
-  <section id="skills" class="section alt-bg">
-    <h2 class="section-title">Technical Skills</h2>
-    <div id="skillsGrid" class="skills-grid"></div>
-  </section>
-
-  <!-- CERTS -->
-  <section id="certs" class="section">
-    <h2 class="section-title">Certifications & Achievements</h2>
-    <div class="certs-wrap">
-      <div>
-        <h3>Certifications</h3>
-        <ul id="certsList" class="plain-list"></ul>
+        <div class="hero-visual">
+          <div class="image-frame">
+            <img src="assets/profile.jpg" alt="Professional portrait of Taniya Vishwakarma" />
+          </div>
+          <div class="floating-card">
+            <strong>2+ Years</strong>
+            <span>QA Automation Experience</span>
+          </div>
+          <div class="floating-card floating-card-right">
+            <strong>10K+</strong>
+            <span>Concurrent-user performance testing</span>
+          </div>
+        </div>
       </div>
-      <div>
-        <h3>Recognition</h3>
-        <ul id="achievementsList" class="plain-list"></ul>
+    </section>
+
+    <!-- TRUSTED / EXPERIENCE STRIP -->
+    <section class="logo-strip section-tight" aria-label="Companies and project environments">
+      <div class="container">
+        <p class="strip-label">PROJECT EXPERIENCE ACROSS LEADING ENTERPRISE ENVIRONMENTS</p>
+        <div class="logo-row">
+          <div class="company-logo"><span class="logo-mark">X</span><b>Xebia</b></div>
+          <div class="company-logo"><span class="logo-mark">M</span><b>McKinsey</b></div>
+          <div class="company-logo"><span class="logo-mark">IB</span><b>Imperial Brands</b></div>
+          <div class="company-logo"><span class="logo-mark">E</span><b>Elekta</b></div>
+          <div class="company-logo"><span class="logo-mark">R</span><b>Ryder</b></div>
+          <div class="company-logo"><span class="logo-mark">N</span><b>Novartis</b></div>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- EDUCATION -->
-  <section id="education" class="section alt-bg">
-    <h2 class="section-title">Education</h2>
-    <div id="educationTimeline" class="timeline"></div>
-  </section>
+    <!-- SKILLS / WHAT I DO -->
+    <section class="section" id="skills">
+      <div class="container">
+        <div class="section-heading centered">
+          <div class="eyebrow">MY EXPERTISE</div>
+          <h2>What I do</h2>
+          <p>
+            I combine quality engineering, automation and performance testing to help teams
+            release software that is dependable, measurable and production-ready.
+          </p>
+        </div>
 
-  <!-- CONTACT / BOOKING -->
-  <section id="contact" class="section">
-    <h2 class="section-title">Book a Call</h2>
-    <p class="section-sub">Pick a date and time that works for you — I'll get an email with the request.</p>
-    <form id="bookingForm" class="booking-form">
-      <div class="form-row">
-        <label>Your Name
-          <input type="text" id="bookName" required />
-        </label>
-        <label>Your Email
-          <input type="email" id="bookEmail" required />
-        </label>
+        <div class="skill-grid">
+          <article class="skill-card">
+            <div class="icon-box">⌘</div>
+            <h3>Test Automation</h3>
+            <p>Playwright, Selenium, Appium, Cucumber/BDD and POM-based frameworks for scalable end-to-end coverage.</p>
+            <div class="tag-list"><span>Playwright</span><span>Selenium</span><span>Appium</span><span>BDD</span></div>
+          </article>
+
+          <article class="skill-card">
+            <div class="icon-box">API</div>
+            <h3>API & Data Validation</h3>
+            <p>REST/GraphQL testing, Swagger/OpenAPI validation and database reconciliation across real enterprise workflows.</p>
+            <div class="tag-list"><span>REST</span><span>GraphQL</span><span>Snowflake</span><span>SQL</span></div>
+          </article>
+
+          <article class="skill-card">
+            <div class="icon-box">J</div>
+            <h3>Performance Engineering</h3>
+            <p>JMeter load, stress and endurance testing with distributed execution and high-concurrency scenarios.</p>
+            <div class="tag-list"><span>JMeter</span><span>AWS EC2</span><span>10K+ users</span></div>
+          </article>
+
+          <article class="skill-card">
+            <div class="icon-box">QA</div>
+            <h3>Quality Engineering</h3>
+            <p>Functional, E2E, regression, smoke, sanity, accessibility, cross-browser testing, RCA and release validation.</p>
+            <div class="tag-list"><span>RCA</span><span>Jira</span><span>Regression</span><span>Accessibility</span></div>
+          </article>
+
+          <article class="skill-card">
+            <div class="icon-box">{ }</div>
+            <h3>Programming</h3>
+            <p>Strong development foundation that helps me build maintainable test frameworks and troubleshoot application behavior.</p>
+            <div class="tag-list"><span>Java</span><span>TypeScript</span><span>JavaScript</span><span>SQL</span></div>
+          </article>
+
+          <article class="skill-card">
+            <div class="icon-box">CI</div>
+            <h3>DevOps & Delivery</h3>
+            <p>Azure DevOps, CI/CD, Git, GitHub and release-focused collaboration with developers, analysts and product teams.</p>
+            <div class="tag-list"><span>Azure DevOps</span><span>Git</span><span>CI/CD</span><span>Cortex</span></div>
+          </article>
+        </div>
       </div>
-      <div class="form-row">
-        <label>Preferred Date
-          <input type="date" id="bookDate" required />
-        </label>
-        <label>Preferred Time (IST)
-          <select id="bookTime" required></select>
-        </label>
+    </section>
+
+    <!-- PROJECTS -->
+    <section class="section project-section" id="projects">
+      <div class="container">
+        <div class="section-heading centered">
+          <div class="eyebrow">SELECTED WORK</div>
+          <h2>Enterprise projects</h2>
+          <p>Real-world QA automation and performance testing across procurement, e-commerce, healthcare, banking and logistics.</p>
+        </div>
+
+        <div class="project-grid">
+          <article class="project-card">
+            <div class="project-art art-sourceai"><span>McK</span></div>
+            <div class="project-body">
+              <div class="project-meta">PROCUREMENT & SUPPLY CHAIN</div>
+              <h3>McKinsey & Company — SourceAI</h3>
+              <p>Scalable UI automation for AI-driven sourcing, supplier onboarding, approvals, contracts and analytics, with API and Snowflake validation.</p>
+              <div class="tag-list"><span>Playwright</span><span>TypeScript</span><span>GraphQL</span><span>Snowflake</span><span>JMeter</span></div>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-art art-imperial"><span>IB</span></div>
+            <div class="project-body">
+              <div class="project-meta">E-COMMERCE · B2B & B2C</div>
+              <h3>Imperial Brands</h3>
+              <p>Owned automation for multi-country e-commerce journeys with reusable MFA/session handling, data validation and performance coverage.</p>
+              <div class="tag-list"><span>Playwright</span><span>BDD/POM</span><span>Salesforce</span><span>JMeter</span></div>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-art art-elekta"><span>E</span></div>
+            <div class="project-body">
+              <div class="project-meta">HEALTHCARE · SALESFORCE</div>
+              <h3>Elekta</h3>
+              <p>Built a BDD-based Playwright framework from scratch and delivered a POC for reliable automation of complex iFrame workflows.</p>
+              <div class="tag-list"><span>Playwright</span><span>TypeScript</span><span>Cucumber</span><span>POM</span></div>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-art art-bank"><span>U</span></div>
+            <div class="project-body">
+              <div class="project-meta">BANKING & FINANCE</div>
+              <h3>Unity SFB Bank</h3>
+              <p>Engineered JMeter performance testing for critical banking services and payment gateway integration up to 10,000+ concurrent threads.</p>
+              <div class="tag-list"><span>JMeter</span><span>Load</span><span>Stress</span><span>Endurance</span></div>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-art art-ryder"><span>R</span></div>
+            <div class="project-body">
+              <div class="project-meta">LOGISTICS & TRANSPORTATION</div>
+              <h3>Ryder</h3>
+              <p>Maintained 20+ JMeter scripts with CSV-driven datasets and distributed AWS EC2 execution for daily high-volume performance testing.</p>
+              <div class="tag-list"><span>JMeter</span><span>AWS EC2</span><span>CSV Data</span></div>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-art art-chola"><span>C</span></div>
+            <div class="project-body">
+              <div class="project-meta">MOBILE · IOS QA</div>
+              <h3>Chola Insurance</h3>
+              <p>Performed Android/iOS functional and regression testing and developed Java-Appium automation for critical insurance workflows.</p>
+              <div class="tag-list"><span>Appium</span><span>iOS</span><span>Selenium</span><span>Java</span></div>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-art art-novartis"><span>N</span></div>
+            <div class="project-body">
+              <div class="project-meta">HEALTHCARE</div>
+              <h3>Novartis</h3>
+              <p>Supported enterprise healthcare application validation through functional and regression testing, defect analysis and quality-focused delivery.</p>
+              <div class="tag-list"><span>Functional</span><span>Regression</span><span>Defect Analysis</span></div>
+            </div>
+          </article>
+        </div>
       </div>
-      <label>Message
-        <textarea id="bookMessage" rows="4" placeholder="What would you like to discuss?"></textarea>
-      </label>
-      <button type="submit" class="btn btn-primary">Send Request</button>
-      <p id="bookingStatus" class="status-msg"></p>
-    </form>
-  </section>
+    </section>
 
-</main>
+    <!-- RESUME -->
+    <section class="section resume-section" id="resume">
+      <div class="container resume-grid">
+        <div class="resume-intro">
+          <div class="eyebrow">MY RESUME</div>
+          <h2>Experience that connects development with quality.</h2>
+          <p>
+            My background spans software development and quality engineering, giving me the ability
+            to understand applications from both sides of the delivery lifecycle.
+          </p>
+          <a class="text-link" href="mailto:taniyavishwakarma8844@mail.com?subject=Request%20for%20Resume">Request full resume <span>→</span></a>
 
-<footer class="site-footer">
-  <p>© <span id="year"></span> Taniya Vishwakarma. Built with care.</p>
-  <button id="adminOpenBtn" class="admin-link">Admin</button>
-</footer>
+          <div class="resume-highlights">
+            <div><strong>GEM</strong><span>Award recipient</span></div>
+            <div><strong>5th</strong><span>University rank</span></div>
+            <div><strong>C2</strong><span>EF SET English</span></div>
+          </div>
+        </div>
 
-<!-- ADMIN LOGIN MODAL -->
-<div id="loginModal" class="modal hidden">
-  <div class="modal-box">
-    <button class="modal-close" data-close="loginModal">×</button>
-    <h3>Admin Login</h3>
-    <label>Password
-      <input type="password" id="adminPassword" />
-    </label>
-    <button id="adminLoginBtn" class="btn btn-primary">Log In</button>
-    <p id="loginError" class="status-msg error"></p>
-  </div>
-</div>
+        <div class="timeline">
+          <div class="timeline-item">
+            <span class="timeline-dot"></span>
+            <div class="timeline-date">SEPT 2024 — PRESENT</div>
+            <h3>QA Automation Engineer · Consultant — SDET II</h3>
+            <h4>Xebia IT Architects India Private Limited</h4>
+            <p>Enterprise QA automation across AI sourcing, e-commerce, healthcare, banking and performance testing engagements.</p>
+          </div>
 
-<!-- ADMIN PANEL MODAL -->
-<div id="adminModal" class="modal hidden">
-  <div class="modal-box wide">
-    <button class="modal-close" data-close="adminModal">×</button>
-    <h3>Admin Panel — Add Project</h3>
-    <div class="form-row">
-      <label>Company Name
-        <input type="text" id="apCompany" />
-      </label>
-      <label>Company Domain (for logo lookup)
-        <input type="text" id="apDomain" placeholder="e.g. company.com" />
-      </label>
+          <div class="timeline-item">
+            <span class="timeline-dot"></span>
+            <div class="timeline-date">APR 2024 — AUG 2024</div>
+            <h3>Intern Software Developer</h3>
+            <h4>Innobimb Infotech Pvt. Ltd.</h4>
+            <p>Built REST APIs and ReactJS applications for MES and inventory systems; optimized MySQL/PostgreSQL operations and developed VMD/LED device discovery.</p>
+          </div>
+
+          <div class="timeline-item">
+            <span class="timeline-dot"></span>
+            <div class="timeline-date">AUG 2023 — MAR 2024</div>
+            <h3>Trainee Software Developer</h3>
+            <h4>Technoduxx Pvt. Ltd.</h4>
+            <p>Developed and enhanced web applications using OutSystems, implementing workflows, UI components and data-driven functionality.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EDUCATION + CERTIFICATIONS -->
+    <section class="section details-section">
+      <div class="container details-grid">
+        <div>
+          <div class="eyebrow">EDUCATION</div>
+          <h2>Academic foundation</h2>
+          <div class="detail-list">
+            <div class="detail-item"><strong>MCA</strong><span>NRI Institute of Technology · 82% · Jul 2023 – May 2025</span></div>
+            <div class="detail-item"><strong>BCA</strong><span>Sant Hirdaram Girls College · 82% · May 2020 – Apr 2023</span></div>
+            <div class="detail-item"><strong>Class XII</strong><span>Kendriya Vidyalaya Bairagarh · 74% · Apr 2019 – May 2020</span></div>
+          </div>
+        </div>
+        <div>
+          <div class="eyebrow">CERTIFICATIONS & ACHIEVEMENTS</div>
+          <h2>Continuous growth</h2>
+          <div class="pill-list">
+            <span>AWS Cloud Practitioner</span>
+            <span>AWS Generative AI Professional</span>
+            <span>Claude AI MCP</span>
+            <span>EF SET English — C2</span>
+            <span>GEM Award — Xebia</span>
+            <span>5th University Rank</span>
+            <span>1st College Rank</span>
+            <span>1st HackerRank C Programming</span>
+            <span>National Skipping — 4th & 5th</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIAL / PROFESSIONAL VALUE -->
+    <section class="section testimonial-section">
+      <div class="container testimonial-card">
+        <div class="testimonial-copy">
+          <div class="eyebrow">WHY WORK WITH ME</div>
+          <h2>Quality is not a final step. It is built into the delivery.</h2>
+          <p>
+            I focus on automation that is maintainable, debugging that reaches the root cause,
+            and test coverage that gives engineering teams confidence before release.
+          </p>
+          <div class="value-points">
+            <div><b>01</b><span>Framework ownership</span></div>
+            <div><b>02</b><span>Data-driven validation</span></div>
+            <div><b>03</b><span>Performance + functional depth</span></div>
+          </div>
+        </div>
+        <div class="testimonial-visual">
+          <img src="assets/profile.jpg" alt="Taniya Vishwakarma" />
+          <div class="quote-card">
+            <span>“</span>
+            <p>Turning complex requirements into reliable, testable software experiences.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMPANY LOGOS -->
+    <section class="section-tight clients-section">
+      <div class="container">
+        <div class="section-heading centered small">
+          <div class="eyebrow">PROJECT ECOSYSTEM</div>
+          <h2>Company & domain exposure</h2>
+        </div>
+        <div class="client-logo-grid">
+          <div class="client-logo"><b>X</b><span>Xebia</span></div>
+          <div class="client-logo"><b>M</b><span>McKinsey & Company</span></div>
+          <div class="client-logo"><b>IB</b><span>Imperial Brands</span></div>
+          <div class="client-logo"><b>E</b><span>Elekta</span></div>
+          <div class="client-logo"><b>U</b><span>Unity SFB Bank</span></div>
+          <div class="client-logo"><b>R</b><span>Ryder</span></div>
+          <div class="client-logo"><b>C</b><span>Chola Insurance</span></div>
+          <div class="client-logo"><b>N</b><span>Novartis</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section contact-section" id="contact">
+      <div class="container contact-grid">
+        <div>
+          <div class="eyebrow">LET'S CONNECT</div>
+          <h2>Have a role, project or opportunity in mind?</h2>
+          <p>
+            I would love to connect about SDET, QA Automation, Playwright, API or Performance Testing opportunities.
+          </p>
+          <div class="contact-details">
+            <a href="mailto:taniyavishwakarma8844@mail.com">taniyavishwakarma8844@mail.com</a>
+            <a href="tel:+919340984708">+91 9340984708</a>
+            <a href="https://www.linkedin.com/in/taniya-vishwakarma-7252a7203/" target="_blank" rel="noopener">LinkedIn profile ↗</a>
+            <a href="https://taniyav.in/" target="_blank" rel="noopener">taniyav.in ↗</a>
+          </div>
+        </div>
+
+        <form class="contact-form" id="contactForm">
+          <label>Your name<input type="text" name="name" placeholder="Enter your name" required></label>
+          <label>Your email<input type="email" name="email" placeholder="Enter your email" required></label>
+          <label>Message<textarea name="message" rows="5" placeholder="Tell me about the opportunity..." required></textarea></label>
+          <button class="btn btn-dark" type="submit">Send message <span>→</span></button>
+          <small>Submitting opens your default email client with the message prepared.</small>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-row">
+      <div><b>Taniya Vishwakarma</b><span> · SDET II / QA Automation Engineer</span></div>
+      <div class="footer-links">
+        <a href="#home">Home</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#resume">Resume</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="copyright">© <span id="year"></span> Taniya Vishwakarma</div>
     </div>
-    <div class="form-row">
-      <label>Category / Domain Area
-        <input type="text" id="apCategory" placeholder="e.g. Healthcare" />
-      </label>
-      <label>Tech Stack (comma-separated)
-        <input type="text" id="apTech" placeholder="Playwright, TypeScript, REST" />
-      </label>
-    </div>
-    <label>Description
-      <textarea id="apDescription" rows="3"></textarea>
-    </label>
-    <div class="admin-actions">
-      <button id="apAddBtn" class="btn btn-primary">Add to Preview</button>
-      <button id="apPublishBtn" class="btn btn-ghost">Publish to GitHub</button>
-      <button id="apExportBtn" class="btn btn-ghost">Export JSON</button>
-      <button id="adminLogoutBtn" class="btn btn-ghost">Log Out</button>
-    </div>
-    <p id="adminStatus" class="status-msg"></p>
-    <h4>Current Projects</h4>
-    <ul id="adminProjectList" class="admin-project-list"></ul>
-  </div>
-</div>
-
-<script src="script.js"></script>
+  </footer>
 </body>
 </html>
