@@ -4,12 +4,11 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="robots" content="noindex" />
-<meta name="description" content="Taniya Vishwakarma — an interactive point of view on quality engineering, prepared for the SDET Tech interview." />
-<link rel="icon" href="../assets/favicon.png" />
+<meta name="description" content="Taniya Vishwakarma — an interactive point of view on quality engineering" />
+<link rel="icon" href="assets/favicon.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.4/chart.umd.min.js"></script>
 <style>
 :root{
   --bg:#F2F2F2; --surface:#FFFFFF; --surface-soft:#F0F0EE; --text:#111111; --muted:#666666;
@@ -48,7 +47,8 @@ h1.doc-title{font-family:"Plus Jakarta Sans",sans-serif;font-size:clamp(28px,4vw
 .chip-a{left:-18px;bottom:-14px}
 .chip-b{right:-16px;top:14px}
 
-.stat-strip{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--border)}
+.stat-strip{border-top:1px solid var(--border)}
+.stat-strip-inner{display:grid;grid-template-columns:repeat(3,1fr)}
 .stat-cell{padding:22px 4px;text-align:center;border-left:1px solid var(--border)}
 .stat-cell:first-child{border-left:none}
 .stat-cell strong{display:block;font-family:"Plus Jakarta Sans",sans-serif;font-size:clamp(22px,3vw,30px);letter-spacing:-.02em}
@@ -113,8 +113,27 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 .bd-cell .bd-track i{display:block;height:100%;background:var(--ink);border-radius:4px;transition:width .3s}
 
 /* chart card */
-.chart-card{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:24px;margin-top:26px;box-shadow:var(--shadow-soft)}
-.chart-card canvas{max-height:340px}
+.chart-card{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:28px;margin-top:26px;box-shadow:var(--shadow-soft)}
+.radar-wrap{position:relative;max-width:480px;margin:0 auto}
+.radar-wrap svg{width:100%;height:auto;overflow:visible}
+.radar-grid{fill:none;stroke:var(--border)}
+.radar-axis{stroke:var(--border)}
+.radar-shape{fill:rgba(17,17,17,.07);stroke:var(--ink);stroke-width:2;transform-origin:center;transform-box:fill-box;transform:scale(.001);transition:transform .9s cubic-bezier(.16,1,.3,1)}
+.chart-card.is-visible .radar-shape{transform:scale(1)}
+.radar-point{fill:var(--ink);stroke:#fff;stroke-width:2;cursor:pointer}
+.radar-label{font-family:Inter,sans-serif;font-size:11px;fill:#444;font-weight:600}
+.radar-tip{position:absolute;max-width:220px;background:var(--ink);color:#fff;font-size:11.5px;line-height:1.5;padding:10px 13px;border-radius:10px;box-shadow:var(--shadow);pointer-events:none;opacity:0;transition:opacity .15s;z-index:5}
+.radar-tip.show{opacity:1}
+.radar-tip b{display:block;font-size:12px;margin-bottom:3px}
+
+/* live dot */
+.live-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#2E9E4F;margin-right:6px;position:relative;top:-1px}
+.live-dot:after{content:"";position:absolute;inset:0;border-radius:50%;background:#2E9E4F;animation:pulse 1.8s ease-out infinite}
+@keyframes pulse{0%{transform:scale(1);opacity:.7}100%{transform:scale(2.6);opacity:0}}
+
+/* scroll reveal */
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .7s ease, transform .7s cubic-bezier(.16,1,.3,1)}
+.reveal.is-visible{opacity:1;transform:translateY(0)}
 
 .logo-strip{display:flex;flex-wrap:wrap;gap:26px;align-items:center;margin-top:24px;padding-top:24px;border-top:1px solid var(--border)}
 .logo-strip img{height:22px;width:auto;filter:grayscale(1);opacity:.55;transition:opacity .2s,filter .2s}
@@ -155,18 +174,30 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 
 @media (max-width:760px){
   .hero-grid{grid-template-columns:1fr}
-  .hero-photo{margin:0 auto}
+  .hero-photo{margin:0 auto;width:min(100%,220px)}
+  .chip-a{left:-10px;bottom:-16px;min-width:100px;padding:8px 10px}
+  .chip-b{right:-10px;top:10px;min-width:100px;padding:8px 10px}
+  .chip-a strong,.chip-b strong{font-size:15px}
+  .chip-a span,.chip-b span{font-size:9.5px}
   .sim-grid{grid-template-columns:1fr}
-  .gauge-wrap{margin-top:10px}
+  .gauge-wrap{margin-top:10px;width:180px;height:180px}
   .breakdown{grid-template-columns:repeat(2,1fr)}
   .compare-row{grid-template-columns:110px 1fr 34px}
+  .idea.flagship{padding:22px}
 }
 @media (max-width:640px){
   .idea{grid-template-columns:36px 1fr}
-  .stat-strip{grid-template-columns:1fr;}
+  .stat-strip-inner{grid-template-columns:1fr}
   .stat-cell{border-left:none;border-top:1px solid var(--border)}
   .stat-cell:first-child{border-top:none}
   .closing{padding:34px 24px}
+  .tabbar,.code-tabs{flex-wrap:nowrap;overflow-x:auto;padding-bottom:6px;-webkit-overflow-scrolling:touch}
+  .tab-btn,.code-tab{flex:0 0 auto}
+  .sim-card{padding:22px}
+}
+@media (max-width:400px){
+  .chip-a,.chip-b{position:static;margin-top:10px;width:100%}
+  .hero-photo{width:100%;max-width:220px}
 }
 </style>
 </head>
@@ -174,8 +205,8 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 
 <header class="site-header">
   <nav class="navbar">
-    <a class="brand" href="../index.html">Taniya<span>.</span></a>
-    <a class="back-link" href="../index.html">&larr; Back to portfolio</a>
+    <a class="brand" href="index.html">Taniya<span>.</span></a>
+    <a class="back-link" href="index.html">&larr; Back to portfolio</a>
   </nav>
 </header>
 
@@ -185,7 +216,6 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
     <div class="container">
       <div class="hero-grid">
         <div>
-          <div class="hero-tag">Prepared for my interview with <b>SDET&nbsp;Tech</b></div>
           <h1 class="doc-title">The value I want to add, not just the work I can do</h1>
           <p class="doc-sub">
             Most QA hires optimize for "can execute your existing service lines." I can — the proof is
@@ -194,14 +224,14 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
           </p>
         </div>
         <div class="hero-photo">
-          <div class="frame"><img src="../assets/profile.jpg" alt="Taniya Vishwakarma" onerror="this.parentElement.style.display='none'"/></div>
+          <div class="frame"><img src="assets/profile.jpg" alt="Taniya Vishwakarma" onerror="this.parentElement.style.display='none'"/></div>
           <div class="hero-chip chip-a"><strong>5</strong><span>AI-output dimensions I already test: hallucination, accuracy, relevance, consistency, guardrails</span></div>
           <div class="hero-chip chip-b"><strong>10K+</strong><span>Concurrent users, JMeter</span></div>
         </div>
       </div>
     </div>
     <div class="stat-strip">
-      <div class="container" style="display:contents">
+      <div class="container stat-strip-inner">
         <div class="stat-cell"><strong data-count="40" data-suffix="%">0%</strong><span>of enterprise apps projected to run task-specific AI agents by end of 2026 — Gartner</span></div>
         <div class="stat-cell"><strong data-count="2" data-suffix="">0</strong><span>regulations (EU AI Act, Colorado AI Act) now requiring algorithmic accountability</span></div>
         <div class="stat-cell"><strong data-count="7" data-suffix="th">0</strong><span>service line SDET Tech doesn't productize yet — the one I want to build</span></div>
@@ -237,7 +267,7 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
       <div class="compare-legend"><span><i class="dot-then"></i>Checklist-inside-a-service-line (today)</span><span><i class="dot-now"></i>Trust Score as its own practice</span></div>
       <p class="lede" style="margin-top:4px;font-size:11.5px;color:var(--muted-2)">Illustrative scoring, 0–100 — my own estimate of the gap, not a client benchmark.</p>
 
-      <div class="idea flagship">
+      <div class="idea flagship reveal">
         <div class="idea-num">★</div>
         <div>
           <h3>What I'd build: a Trust Score, not just a test report</h3>
@@ -255,11 +285,11 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 
   <section class="section">
     <div class="container">
-      <div class="kicker">Try it — live</div>
+      <div class="kicker"><span class="live-dot"></span>Try it — live</div>
       <h2 class="h">The Trust Score, calculated in front of you</h2>
       <p class="lede">Move the sliders the way you'd move a client's real numbers. The gauge and the formula update live — this is the actual weighting I'd propose as a starting point.</p>
 
-      <div class="sim-card">
+      <div class="sim-card reveal">
         <div class="sim-grid">
           <div>
             <div class="slider-row">
@@ -313,18 +343,18 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
       <h2 class="h">The execution side, proven across your existing six lines</h2>
       <p class="lede">A Trust Score is only worth building if the person building it can already run disciplined QA at enterprise scale. Self-rated out of 10 — hover a point for what it's based on.</p>
 
-      <div class="chart-card">
-        <canvas id="radarChart" height="300"></canvas>
+      <div class="chart-card reveal">
+        <div class="radar-wrap" id="radarWrap"></div>
       </div>
 
       <div class="logo-strip" aria-label="Enterprise environments referenced above">
-        <img src="../assets/mckinsey-logo-clean.png" alt="McKinsey & Company">
-        <img src="../assets/imperial-brands-logo-clean.png" alt="Imperial Brands">
-        <img src="../assets/elekta-logo-clean.png" alt="Elekta">
-        <img src="../assets/carnival-logo-clean.png" alt="Carnival">
-        <img src="../assets/ryder-logo-clean.png" alt="Ryder">
-        <img src="../assets/unity-sfb-logo-clean.png" alt="Unity Small Finance Bank">
-        <img src="../assets/novartis-logo-clean.png" alt="Novartis">
+        <img src="assets/mckinsey-logo-clean.png" alt="McKinsey & Company">
+        <img src="assets/imperial-brands-logo-clean.png" alt="Imperial Brands">
+        <img src="assets/elekta-logo-clean.png" alt="Elekta">
+        <img src="assets/carnival-logo-clean.png" alt="Carnival">
+        <img src="assets/ryder-logo-clean.png" alt="Ryder">
+        <img src="assets/unity-sfb-logo-clean.png" alt="Unity Small Finance Bank">
+        <img src="assets/novartis-logo-clean.png" alt="Novartis">
       </div>
     </div>
   </section>
@@ -396,11 +426,11 @@ perf_gate:
 
   <section class="section">
     <div class="container">
-      <div class="closing">
+      <div class="closing reveal">
         <h2>I don't just want to pass your test suites. I want to help build the next service line.</h2>
         <p>This page is part of my portfolio, prepared specifically for this conversation. Full experience, projects and resume are one click away.</p>
         <div class="closing-links">
-          <a class="cl-primary" href="../index.html#resume">View full resume →</a>
+          <a class="cl-primary" href="index.html#resume">View full resume →</a>
           <a class="cl-secondary" href="mailto:taniyavishwakarma8844@gmail.com?subject=Following%20up%20—%20SDET%20Tech%20interview">Email me</a>
           <a class="cl-secondary" href="https://www.linkedin.com/in/taniya-vishwakarma-7252a7203/" target="_blank" rel="noopener">LinkedIn ↗</a>
         </div>
@@ -411,7 +441,7 @@ perf_gate:
 </main>
 
 <footer class="footer">
-  <div class="container">Taniya Vishwakarma · Prepared for SDET Tech, Noida &amp; Bengaluru · taniyav.in</div>
+  <div class="container">Taniya Vishwakarma · SDET Tech, Noida &amp; Bengaluru · taniyav.in</div>
 </footer>
 
 <script>
@@ -475,56 +505,96 @@ document.addEventListener("DOMContentLoaded", () => {
   [guard, task, heal, hall].forEach(s => s.addEventListener("input", render));
   render();
 
-  /* ---- radar chart ---- */
+  /* ---- radar chart: hand-built SVG, no external library ---- */
   const evidence = {
-    "Automation Testing": "Playwright + TypeScript BDD/POM framework built from scratch at Elekta; Java-Appium at Chola Insurance.",
+    "Automation Testing": "Playwright + TypeScript BDD/POM built from scratch at Elekta; Java-Appium at Chola Insurance.",
     "Performance Testing": "JMeter at 10,000+ concurrent threads — Unity SFB Bank & Ryder, distributed on AWS EC2.",
     "ETL / DB Testing": "Reconciled UI/API output against Snowflake at McKinsey's SourceAI; SQL across MySQL/PostgreSQL.",
-    "Functional & Regression": "Cross-browser, regression, RCA and JIRA defect management across 7+ enterprise engagements.",
+    "Functional & Regression": "Cross-browser, regression, RCA and JIRA defect management across 7+ engagements.",
     "Cybersecurity Testing": "Carnival cruise-booking platform — release checks aligned to OWASP Top 10, VAPT-informed.",
-    "AI-Driven QA": "Hallucination, accuracy, relevance, consistency & guardrail testing on McKinsey's SourceAI — my strongest overlap with SDET360.AI."
+    "AI-Driven QA": "Hallucination, accuracy, relevance, consistency & guardrail testing on SourceAI — my strongest overlap with SDET360.AI."
   };
-  const labels = Object.keys(evidence);
-  const ctx = document.getElementById("radarChart");
-  if (ctx && window.Chart) {
-    new Chart(ctx, {
-      type: "radar",
-      data: {
-        labels,
-        datasets: [{
-          label: "Self-rated / 10",
-          data: [9, 9, 8, 9, 7, 9],
-          backgroundColor: "rgba(17,17,17,0.08)",
-          borderColor: "#111111",
-          pointBackgroundColor: "#111111",
-          borderWidth: 2,
-          pointRadius: 4
-        }]
-      },
-      options: {
-        responsive: true,
-        scales: {
-          r: {
-            min: 0, max: 10, ticks: { display:false, stepSize: 2 },
-            grid: { color: "#DEDEDC" },
-            angleLines: { color: "#DEDEDC" },
-            pointLabels: { font: { size: 11, family: "Inter" }, color: "#444444" }
-          }
-        },
-        plugins: {
-          legend: { display: false },
-          tooltip: {
-            callbacks: {
-              label: (item) => item.formattedValue + " / 10",
-              afterLabel: (item) => {
-                const text = evidence[item.label] || "";
-                return text.match(/.{1,40}(\s|$)/g) || text;
-              }
-            }
-          }
-        }
-      }
+  const radarData = [9, 9, 8, 9, 7, 9]; // out of 10, in the same order as evidence keys above
+
+  function buildRadar(){
+    const wrap = document.getElementById("radarWrap");
+    if (!wrap) return;
+    const labels = Object.keys(evidence);
+    const N = labels.length;
+    const size = 420, cx = size/2, cy = size/2 - 6, maxR = 140;
+    const rings = [0.2, 0.4, 0.6, 0.8, 1];
+    const angle = i => (Math.PI * 2 * i) / N - Math.PI/2;
+    const pt = (i, frac) => [ cx + Math.cos(angle(i)) * maxR * frac, cy + Math.sin(angle(i)) * maxR * frac ];
+
+    let svg = `<svg viewBox="0 0 ${size} ${size}">`;
+
+    // grid rings
+    rings.forEach(r => {
+      const pts = labels.map((_, i) => pt(i, r).join(",")).join(" ");
+      svg += `<polygon class="radar-grid" points="${pts}"/>`;
     });
+    // axis lines
+    labels.forEach((_, i) => {
+      const [x, y] = pt(i, 1);
+      svg += `<line class="radar-axis" x1="${cx}" y1="${cy}" x2="${x}" y2="${y}"/>`;
+    });
+    // data shape
+    const dataPts = labels.map((_, i) => pt(i, radarData[i]/10).join(",")).join(" ");
+    svg += `<polygon class="radar-shape" points="${dataPts}"/>`;
+    // points
+    labels.forEach((label, i) => {
+      const [x, y] = pt(i, radarData[i]/10);
+      svg += `<circle class="radar-point" data-label="${label}" data-value="${radarData[i]}" cx="${x}" cy="${y}" r="5"/>`;
+    });
+    // labels
+    labels.forEach((label, i) => {
+      const [x, y] = pt(i, 1.22);
+      const a = angle(i);
+      const anchor = Math.cos(a) > 0.3 ? "start" : Math.cos(a) < -0.3 ? "end" : "middle";
+      const words = label.split(" ");
+      const mid = Math.ceil(words.length/2);
+      const line1 = words.slice(0, mid).join(" "), line2 = words.slice(mid).join(" ");
+      svg += `<text class="radar-label" x="${x}" y="${y - 4}" text-anchor="${anchor}">${line1}</text>`;
+      if (line2) svg += `<text class="radar-label" x="${x}" y="${y + 10}" text-anchor="${anchor}">${line2}</text>`;
+    });
+    svg += `</svg><div class="radar-tip" id="radarTip"></div>`;
+    wrap.innerHTML = svg;
+
+    const tip = document.getElementById("radarTip");
+    wrap.querySelectorAll(".radar-point").forEach(p => {
+      const showTip = (e) => {
+        const label = p.getAttribute("data-label"), value = p.getAttribute("data-value");
+        tip.innerHTML = `<b>${label} — ${value}/10</b>${evidence[label]}`;
+        const wrapRect = wrap.getBoundingClientRect();
+        const pRect = p.getBoundingClientRect();
+        let left = pRect.left - wrapRect.left + 12;
+        let top = pRect.top - wrapRect.top - 10;
+        if (left + 220 > wrapRect.width) left = pRect.left - wrapRect.left - 232;
+        tip.style.left = left + "px";
+        tip.style.top = top + "px";
+        tip.classList.add("show");
+      };
+      p.addEventListener("mouseenter", showTip);
+      p.addEventListener("touchstart", showTip, {passive:true});
+      p.addEventListener("mouseleave", () => tip.classList.remove("show"));
+    });
+  }
+  buildRadar();
+
+  /* ---- scroll reveal ---- */
+  const revealTargets = document.querySelectorAll(".reveal");
+  if ("IntersectionObserver" in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    revealTargets.forEach(el => io.observe(el));
+  } else {
+    revealTargets.forEach(el => el.classList.add("is-visible"));
   }
 
   /* ---- roadmap tabs ---- */
