@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex" />
+<meta name="description" content="Taniya Vishwakarma — an interactive point of view on quality engineering, prepared for the SDET Tech interview." />
+<link rel="icon" href="../assets/favicon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.4/chart.umd.min.js"></script>
+<style>
+:root{
+  --bg:#F2F2F2; --surface:#FFFFFF; --surface-soft:#F0F0EE; --text:#111111; --muted:#666666;
+  --muted-2:#888888; --border:#DEDEDC; --ink:#111111; --code-bg:#141414; --code-text:#E8E6E1;
+  --code-muted:#8A8780; --radius:14px; --max:900px;
+  --shadow:0 18px 50px rgba(0,0,0,.08); --shadow-soft:0 8px 28px rgba(0,0,0,.05);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.7}
+img{max-width:100%;display:block}
+a{color:inherit}
+.container{width:min(calc(100% - 44px),var(--max));margin:0 auto}
+
+/* header */
+.site-header{position:sticky;top:0;z-index:50;background:rgba(242,242,242,.9);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
+.navbar{width:min(calc(100% - 44px),1080px);margin:0 auto;height:70px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{font-family:"Plus Jakarta Sans",sans-serif;font-weight:800;font-size:20px;letter-spacing:-.04em;text-decoration:none}
+.brand span{color:#625D57}
+.back-link{font-size:13px;font-weight:600;color:var(--muted);text-decoration:none;display:flex;align-items:center;gap:6px}
+.back-link:hover{color:var(--ink)}
+
+/* hero */
+.hero{padding:56px 0 0;border-bottom:1px solid var(--border)}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center;padding-bottom:40px}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:600;color:var(--muted);background:var(--surface);border:1px solid var(--border);padding:7px 13px;border-radius:99px;margin-bottom:22px}
+.hero-tag b{color:var(--ink);font-weight:700}
+h1.doc-title{font-family:"Plus Jakarta Sans",sans-serif;font-size:clamp(28px,4vw,40px);line-height:1.14;letter-spacing:-.03em;margin:0 0 16px}
+.doc-sub{font-size:16px;color:var(--muted);max-width:58ch;margin:0 0 0}
+.hero-photo{position:relative;width:min(100%,260px);margin-left:auto}
+.hero-photo .frame{aspect-ratio:1/1;border-radius:20px;overflow:hidden;border:8px solid #fff;box-shadow:var(--shadow);background:var(--surface-soft)}
+.hero-photo img{width:100%;height:100%;object-fit:cover;object-position:center 15%}
+.hero-chip{position:absolute;background:#fff;border:1px solid var(--border);box-shadow:var(--shadow-soft);border-radius:12px;padding:10px 13px;min-width:120px}
+.hero-chip strong{display:block;font-size:17px;line-height:1.1;font-family:"Plus Jakarta Sans",sans-serif}
+.hero-chip span{font-size:10px;color:var(--muted);line-height:1.3;display:block;margin-top:2px}
+.chip-a{left:-18px;bottom:-14px}
+.chip-b{right:-16px;top:14px}
+
+.stat-strip{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--border)}
+.stat-cell{padding:22px 4px;text-align:center;border-left:1px solid var(--border)}
+.stat-cell:first-child{border-left:none}
+.stat-cell strong{display:block;font-family:"Plus Jakarta Sans",sans-serif;font-size:clamp(22px,3vw,30px);letter-spacing:-.02em}
+.stat-cell span{font-size:11.5px;color:var(--muted);display:block;margin-top:4px;max-width:22ch;margin-inline:auto}
+
+/* generic section */
+.section{padding:52px 0}
+.section + .section{border-top:1px solid var(--border)}
+.kicker{font-size:11px;letter-spacing:.14em;font-weight:800;color:#625D57;text-transform:uppercase;margin-bottom:12px}
+h2.h{font-family:"Plus Jakarta Sans",sans-serif;font-size:clamp(22px,3vw,28px);letter-spacing:-.025em;margin:0 0 16px;max-width:28ch}
+.section > p.lede{font-size:15.5px;color:var(--muted);max-width:66ch;margin:0 0 6px}
+
+.thesis{font-family:"Plus Jakarta Sans",sans-serif;font-size:clamp(18px,2.2vw,21px);line-height:1.5;letter-spacing:-.015em;max-width:70ch;margin:0 0 20px}
+.thesis em{font-style:normal;box-shadow:inset 0 -0.4em 0 var(--surface-soft)}
+
+/* mini comparison bars */
+.compare{display:grid;gap:14px;margin-top:26px;max-width:560px}
+.compare-row{display:grid;grid-template-columns:150px 1fr 40px;align-items:center;gap:12px;font-size:12.5px}
+.compare-row .lbl{color:var(--muted);font-weight:600}
+.compare-track{height:10px;background:var(--surface-soft);border-radius:6px;overflow:hidden;position:relative}
+.compare-track i{display:block;height:100%;border-radius:6px;background:var(--border);transition:width 1s cubic-bezier(.2,.8,.2,1)}
+.compare-track.now i{background:var(--ink)}
+.compare-row .val{text-align:right;font-weight:700;font-family:"Plus Jakarta Sans",sans-serif}
+.compare-legend{display:flex;gap:18px;margin-top:6px;font-size:11.5px;color:var(--muted-2)}
+.compare-legend span{display:inline-flex;align-items:center;gap:6px}
+.compare-legend i{width:10px;height:10px;border-radius:3px;display:inline-block}
+.dot-then{background:var(--border)}
+.dot-now{background:var(--ink)}
+
+/* flagship idea */
+.idea.flagship{background:var(--surface);border:1px solid var(--ink);border-radius:var(--radius);padding:26px 28px;margin-top:28px;box-shadow:var(--shadow)}
+.idea{display:grid;grid-template-columns:56px 1fr;gap:20px}
+.idea-num{font-family:"Plus Jakarta Sans",sans-serif;font-size:26px;font-weight:800;color:var(--ink)}
+.idea h3{margin:0 0 8px;font-size:18px;font-weight:700}
+.idea p{margin:0;color:var(--text);font-size:14.5px;max-width:64ch}
+.idea .why{margin-top:14px;font-size:13px;color:var(--muted-2);border-top:1px solid var(--border);padding-top:14px}
+.idea .why b{color:#625D57}
+
+/* simulator */
+.sim-card{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:32px;margin-top:26px;box-shadow:var(--shadow-soft)}
+.sim-grid{display:grid;grid-template-columns:1fr 230px;gap:40px;align-items:center}
+.slider-row{margin-bottom:18px}
+.slider-row label{display:flex;justify-content:space-between;font-size:13px;font-weight:600;margin-bottom:8px}
+.slider-row label b{font-family:"Plus Jakarta Sans",sans-serif;font-size:14px}
+input[type=range]{-webkit-appearance:none;width:100%;height:4px;background:var(--border);border-radius:3px;outline:none}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--ink);cursor:pointer;border:3px solid #fff;box-shadow:0 0 0 1px var(--ink)}
+input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--ink);cursor:pointer;border:3px solid #fff;box-shadow:0 0 0 1px var(--ink)}
+.gauge-wrap{position:relative;width:210px;height:210px;margin:0 auto}
+.gauge-wrap svg{width:100%;height:100%}
+.gauge-bg{stroke:var(--surface-soft)}
+.gauge-arc{stroke:var(--ink);stroke-linecap:round;transition:stroke-dashoffset .4s ease}
+.gauge-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.gauge-center strong{font-family:"Plus Jakarta Sans",sans-serif;font-size:44px;letter-spacing:-.03em;line-height:1}
+.gauge-center span{font-size:10.5px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;margin-top:4px}
+.gauge-grade{text-align:center;font-size:12.5px;color:var(--muted);margin-top:10px}
+.gauge-grade b{color:var(--ink)}
+.formula{margin-top:22px;font-family:"JetBrains Mono",monospace;font-size:11.5px;color:var(--muted);background:var(--surface-soft);border-radius:10px;padding:12px 15px;line-height:1.6}
+.formula b{color:var(--ink)}
+.breakdown{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:18px}
+.bd-cell{font-size:11px;color:var(--muted)}
+.bd-cell .bd-track{height:6px;background:var(--surface-soft);border-radius:4px;margin-top:6px;overflow:hidden}
+.bd-cell .bd-track i{display:block;height:100%;background:var(--ink);border-radius:4px;transition:width .3s}
+
+/* chart card */
+.chart-card{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:24px;margin-top:26px;box-shadow:var(--shadow-soft)}
+.chart-card canvas{max-height:340px}
+
+.logo-strip{display:flex;flex-wrap:wrap;gap:26px;align-items:center;margin-top:24px;padding-top:24px;border-top:1px solid var(--border)}
+.logo-strip img{height:22px;width:auto;filter:grayscale(1);opacity:.55;transition:opacity .2s,filter .2s}
+.logo-strip img:hover{filter:none;opacity:1}
+
+/* tabs (roadmap) */
+.tabbar{display:flex;gap:8px;margin-top:22px;flex-wrap:wrap}
+.tab-btn{font-family:"Plus Jakarta Sans",sans-serif;font-size:13px;font-weight:700;padding:10px 18px;border-radius:9px;border:1px solid var(--border);background:var(--surface);cursor:pointer;color:var(--muted)}
+.tab-btn.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+.tab-panel{display:none;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:26px 28px;margin-top:14px}
+.tab-panel.active{display:block}
+.tab-panel h4{margin:0 0 8px;font-size:16px}
+.tab-panel p{margin:0;color:var(--muted);font-size:14px;max-width:60ch}
+
+/* code panel */
+.code-panel{background:var(--code-bg);border-radius:var(--radius);padding:22px 24px;margin-top:16px;overflow-x:auto;box-shadow:var(--shadow)}
+.code-tabs{display:flex;gap:6px;margin-top:22px;flex-wrap:wrap}
+.code-tab{font-family:"JetBrains Mono",monospace;font-size:11.5px;color:var(--muted-2);background:var(--surface);border:1px solid var(--border);padding:8px 13px;border-radius:8px;cursor:pointer}
+.code-tab.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+.code-panel .file-tag{font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--code-muted);margin-bottom:14px;letter-spacing:.02em}
+.code-panel pre{margin:0;font-family:"JetBrains Mono",monospace;font-size:12px;line-height:1.65;color:var(--code-text);white-space:pre;display:none}
+.code-panel pre.active{display:block}
+.code-panel .c{color:#7A8B7A}
+.code-panel .k{color:#C9A0DC}
+.code-panel .s{color:#E3B778}
+.code-panel .f{color:#8FB8DE}
+
+/* closing */
+.closing{background:var(--ink);color:#fff;border-radius:20px;padding:46px 40px;margin:0}
+.closing h2{font-family:"Plus Jakarta Sans",sans-serif;font-size:clamp(21px,2.8vw,27px);letter-spacing:-.02em;margin:0 0 14px;max-width:26ch}
+.closing p{color:#B9B7B3;max-width:60ch;margin:0 0 26px;font-size:15px}
+.closing-links{display:flex;flex-wrap:wrap;gap:12px}
+.closing-links a{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;padding:11px 18px;border-radius:9px;text-decoration:none}
+.cl-primary{background:#fff;color:#111}
+.cl-secondary{border:1px solid #3A3A3A;color:#fff}
+
+.footer{padding:30px 0 50px;font-size:12.5px;color:var(--muted-2)}
+
+@media (max-width:760px){
+  .hero-grid{grid-template-columns:1fr}
+  .hero-photo{margin:0 auto}
+  .sim-grid{grid-template-columns:1fr}
+  .gauge-wrap{margin-top:10px}
+  .breakdown{grid-template-columns:repeat(2,1fr)}
+  .compare-row{grid-template-columns:110px 1fr 34px}
+}
+@media (max-width:640px){
+  .idea{grid-template-columns:36px 1fr}
+  .stat-strip{grid-template-columns:1fr;}
+  .stat-cell{border-left:none;border-top:1px solid var(--border)}
+  .stat-cell:first-child{border-top:none}
+  .closing{padding:34px 24px}
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="navbar">
+    <a class="brand" href="../index.html">Taniya<span>.</span></a>
+    <a class="back-link" href="../index.html">&larr; Back to portfolio</a>
+  </nav>
+</header>
+
+<main>
+
+  <section class="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div>
+          <div class="hero-tag">Prepared for my interview with <b>SDET&nbsp;Tech</b></div>
+          <h1 class="doc-title">The value I want to add, not just the work I can do</h1>
+          <p class="doc-sub">
+            Most QA hires optimize for "can execute your existing service lines." I can — the proof is
+            below — but that's table stakes. Scroll for the actual gap I think SDET Tech is sitting next
+            to, and a live calculator for the metric I'd want to build.
+          </p>
+        </div>
+        <div class="hero-photo">
+          <div class="frame"><img src="../assets/profile.jpg" alt="Taniya Vishwakarma" onerror="this.parentElement.style.display='none'"/></div>
+          <div class="hero-chip chip-a"><strong>5</strong><span>AI-output dimensions I already test: hallucination, accuracy, relevance, consistency, guardrails</span></div>
+          <div class="hero-chip chip-b"><strong>10K+</strong><span>Concurrent users, JMeter</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="stat-strip">
+      <div class="container" style="display:contents">
+        <div class="stat-cell"><strong data-count="40" data-suffix="%">0%</strong><span>of enterprise apps projected to run task-specific AI agents by end of 2026 — Gartner</span></div>
+        <div class="stat-cell"><strong data-count="2" data-suffix="">0</strong><span>regulations (EU AI Act, Colorado AI Act) now requiring algorithmic accountability</span></div>
+        <div class="stat-cell"><strong data-count="7" data-suffix="th">0</strong><span>service line SDET Tech doesn't productize yet — the one I want to build</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="kicker">The bigger idea</div>
+      <h2 class="h">Every QA vendor now says "AI-powered." Almost none can prove it's trustworthy.</h2>
+      <p class="thesis">
+        AI can generate a test case in seconds. It can't yet decide whether that test case — or the
+        agent, chatbot, or copilot it's testing — is actually <em>trustworthy</em>. That's still a human
+        quality judgment, and right now almost nobody in QA has turned it into a repeatable, sellable
+        practice.
+      </p>
+      <p class="lede">
+        Analysts describe the same shift as a move from a "test factory" model to a "system of
+        confidence." SDET Tech is already circling it — your blog has covered agentic AI frameworks and
+        AI performance testing. I don't think the gap is awareness. I think "AI quality" is still an
+        extra checklist inside existing service lines, instead of its own practice with its own number.
+      </p>
+
+      <div class="compare">
+        <div class="compare-row"><span class="lbl">Release confidence</span><div class="compare-track"><i data-w="35"></i></div><span class="val">35</span></div>
+        <div class="compare-row"><span class="lbl">Release confidence</span><div class="compare-track now"><i data-w="82"></i></div><span class="val">82</span></div>
+        <div class="compare-row"><span class="lbl">Client differentiation</span><div class="compare-track"><i data-w="20"></i></div><span class="val">20</span></div>
+        <div class="compare-row"><span class="lbl">Client differentiation</span><div class="compare-track now"><i data-w="74"></i></div><span class="val">74</span></div>
+        <div class="compare-row"><span class="lbl">Time to detect drift</span><div class="compare-track"><i data-w="30"></i></div><span class="val">30</span></div>
+        <div class="compare-row"><span class="lbl">Time to detect drift</span><div class="compare-track now"><i data-w="88"></i></div><span class="val">88</span></div>
+      </div>
+      <div class="compare-legend"><span><i class="dot-then"></i>Checklist-inside-a-service-line (today)</span><span><i class="dot-now"></i>Trust Score as its own practice</span></div>
+      <p class="lede" style="margin-top:4px;font-size:11.5px;color:var(--muted-2)">Illustrative scoring, 0–100 — my own estimate of the gap, not a client benchmark.</p>
+
+      <div class="idea flagship">
+        <div class="idea-num">★</div>
+        <div>
+          <h3>What I'd build: a Trust Score, not just a test report</h3>
+          <p>
+            A scorecard — hallucination rate, guardrail adherence, agent task-success rate, self-healing
+            accuracy — run against a client's AI or agentic feature the same way JMeter runs a load
+            profile: repeatably, on every release, with a number at the end. Something a client can put in
+            their own release notes, the way you put "GPTW Certified" on your homepage.
+          </p>
+          <p class="why"><b>Why this is a business idea, not just a QA task:</b> it turns "we also do AI testing" into a named, demoable practice — a line item separate from hourly QA services, and the one thing every other automation vendor is currently improvising rather than productizing.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="kicker">Try it — live</div>
+      <h2 class="h">The Trust Score, calculated in front of you</h2>
+      <p class="lede">Move the sliders the way you'd move a client's real numbers. The gauge and the formula update live — this is the actual weighting I'd propose as a starting point.</p>
+
+      <div class="sim-card">
+        <div class="sim-grid">
+          <div>
+            <div class="slider-row">
+              <label>Guardrail adherence <b><span id="valGuard">88</span>%</b></label>
+              <input type="range" id="guard" min="50" max="100" value="88">
+            </div>
+            <div class="slider-row">
+              <label>Agent task-success rate <b><span id="valTask">82</span>%</b></label>
+              <input type="range" id="task" min="50" max="100" value="82">
+            </div>
+            <div class="slider-row">
+              <label>Self-healing accuracy <b><span id="valHeal">76</span>%</b></label>
+              <input type="range" id="heal" min="50" max="100" value="76">
+            </div>
+            <div class="slider-row">
+              <label>Hallucination rate <b><span id="valHall">4</span>%</b> <span style="font-weight:400;color:var(--muted-2)">(lower is better)</span></label>
+              <input type="range" id="hall" min="0" max="20" value="4">
+            </div>
+
+            <div class="breakdown">
+              <div class="bd-cell">Guardrail × 0.3<div class="bd-track"><i id="bdGuard"></i></div></div>
+              <div class="bd-cell">Task success × 0.3<div class="bd-track"><i id="bdTask"></i></div></div>
+              <div class="bd-cell">Self-heal × 0.2<div class="bd-track"><i id="bdHeal"></i></div></div>
+              <div class="bd-cell">Hallucination term × 0.2<div class="bd-track"><i id="bdHall"></i></div></div>
+            </div>
+
+            <div class="formula"><b>Trust Score</b> = 0.30·Guardrail + 0.30·TaskSuccess + 0.20·SelfHeal + 0.20·(100 − 5·Hallucination)</div>
+          </div>
+
+          <div>
+            <div class="gauge-wrap">
+              <svg viewBox="0 0 220 220">
+                <circle class="gauge-bg" cx="110" cy="110" r="94" stroke-width="16" fill="none"/>
+                <circle id="gaugeArc" class="gauge-arc" cx="110" cy="110" r="94" stroke-width="16" fill="none" stroke-dasharray="590.6" stroke-dashoffset="590.6" transform="rotate(-90 110 110)"/>
+              </svg>
+              <div class="gauge-center">
+                <strong id="scoreNum">0</strong>
+                <span>Trust Score</span>
+              </div>
+            </div>
+            <div class="gauge-grade">Grade: <b id="gradeLabel">—</b></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="kicker">Why I'm credible for this, not just enthusiastic</div>
+      <h2 class="h">The execution side, proven across your existing six lines</h2>
+      <p class="lede">A Trust Score is only worth building if the person building it can already run disciplined QA at enterprise scale. Self-rated out of 10 — hover a point for what it's based on.</p>
+
+      <div class="chart-card">
+        <canvas id="radarChart" height="300"></canvas>
+      </div>
+
+      <div class="logo-strip" aria-label="Enterprise environments referenced above">
+        <img src="../assets/mckinsey-logo-clean.png" alt="McKinsey & Company">
+        <img src="../assets/imperial-brands-logo-clean.png" alt="Imperial Brands">
+        <img src="../assets/elekta-logo-clean.png" alt="Elekta">
+        <img src="../assets/carnival-logo-clean.png" alt="Carnival">
+        <img src="../assets/ryder-logo-clean.png" alt="Ryder">
+        <img src="../assets/unity-sfb-logo-clean.png" alt="Unity Small Finance Bank">
+        <img src="../assets/novartis-logo-clean.png" alt="Novartis">
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="kicker">From idea to shipped work</div>
+      <h2 class="h">Three building blocks toward the Trust Score, in the first 90 days</h2>
+      <p class="lede">A new practice doesn't start as a slide — it starts as three small, demoable pieces that later assemble into the scorecard. Click a tab.</p>
+
+      <div class="tabbar">
+        <button class="tab-btn active" data-tab="t1">01 · Guardrail rubric</button>
+        <button class="tab-btn" data-tab="t2">02 · Locator resilience</button>
+        <button class="tab-btn" data-tab="t3">03 · Performance gate</button>
+      </div>
+      <div class="tab-panel active" id="t1">
+        <h4>A hallucination/guardrail rubric, run before the maker-checker step</h4>
+        <p>SDET360.AI already has a creator → reviewer workflow. I'd bring the same checklist I use on AI-powered workflows at McKinsey — checking generated output for hallucination, missing edge cases, and consistency against the source requirement — as a lightweight pre-check that makes the human reviewer's job faster. This becomes the first metric that feeds the Trust Score.</p>
+      </div>
+      <div class="tab-panel" id="t2">
+        <h4>Locator-resilience checks alongside the locator generator</h4>
+        <p>A short Playwright harness that re-runs generated locators against intentionally-mutated DOM states (attribute renamed, element re-nested, class removed) and reports which ones would have needed self-healing. Turns "self-healing" from a claim into the scorecard's second metric.</p>
+      </div>
+      <div class="tab-panel" id="t3">
+        <h4>Performance budgets as a CI/CD gate, not a post-release report</h4>
+        <p>My JMeter work has mostly fed dashboards after the fact. I'd wire response-time and throughput thresholds into the same Jenkins/GitHub Actions pipeline SDET360.AI already plugs into, so a performance regression fails the build — the scorecard's third and most mature metric.</p>
+      </div>
+
+      <div class="code-tabs">
+        <button class="code-tab active" data-code="c1">rubric-check.ts</button>
+        <button class="code-tab" data-code="c2">locator-resilience.spec.ts</button>
+        <button class="code-tab" data-code="c3">perf-gate.yml</button>
+      </div>
+      <div class="code-panel">
+        <div class="file-tag">sketch — not production code</div>
+        <pre id="c1" class="active"><span class="c">// Pre-check run on AI-generated test cases before reviewer sign-off</span>
+<span class="k">function</span> <span class="f">guardrailScore</span>(output: GeneratedCase) {
+  <span class="k">const</span> checks = [
+    hallucinationFree(output),
+    <span class="f">coversEdgeCases</span>(output.acceptanceCriteria),
+    <span class="f">matchesSourceStory</span>(output.storyId),
+    guardrailAdherence(output),
+  ];
+  <span class="k">return</span> checks.filter(Boolean).length / checks.length; <span class="c">// feeds Trust Score</span>
+}</pre>
+        <pre id="c2"><span class="c">// Re-checks a generated locator against mutated DOM snapshots</span>
+<span class="k">import</span> { test, expect } <span class="k">from</span> <span class="s">'@playwright/test'</span>;
+
+<span class="k">const</span> mutations = [<span class="s">'renamed-attr'</span>, <span class="s">'re-nested'</span>, <span class="s">'class-removed'</span>];
+
+<span class="k">for</span> (<span class="k">const</span> mutation <span class="k">of</span> mutations) {
+  test(<span class="s">`locator survives: ${mutation}`</span>, <span class="k">async</span> ({ page }) => {
+    <span class="k">await</span> page.goto(<span class="s">`/fixtures/checkout?mutate=${mutation}`</span>);
+    <span class="k">const</span> submit = page.getByRole(<span class="s">'button'</span>, { name: <span class="s">/place order/i</span> });
+    <span class="k">await</span> expect(submit).<span class="f">toBeVisible</span>({ timeout: <span class="c">2_000</span> });
+  });
+}</pre>
+        <pre id="c3"><span class="c"># Fails the build if p95 latency or throughput breaks budget</span>
+perf_gate:
+  <span class="k">source</span>: jmeter-report.jtl
+  thresholds:
+    p95_ms: <span class="c">&lt;= 800</span>
+    throughput_rps: <span class="c">&gt;= 250</span>
+    error_rate: <span class="c">&lt;= 0.5%</span>
+  on_fail: <span class="s">block_merge</span></pre>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="closing">
+        <h2>I don't just want to pass your test suites. I want to help build the next service line.</h2>
+        <p>This page is part of my portfolio, prepared specifically for this conversation. Full experience, projects and resume are one click away.</p>
+        <div class="closing-links">
+          <a class="cl-primary" href="../index.html#resume">View full resume →</a>
+          <a class="cl-secondary" href="mailto:taniyavishwakarma8844@gmail.com?subject=Following%20up%20—%20SDET%20Tech%20interview">Email me</a>
+          <a class="cl-secondary" href="https://www.linkedin.com/in/taniya-vishwakarma-7252a7203/" target="_blank" rel="noopener">LinkedIn ↗</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="container">Taniya Vishwakarma · Prepared for SDET Tech, Noida &amp; Bengaluru · taniyav.in</div>
+</footer>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  /* ---- hero counters ---- */
+  document.querySelectorAll("[data-count]").forEach(el => {
+    const target = parseFloat(el.getAttribute("data-count"));
+    const suffix = el.getAttribute("data-suffix") || "";
+    const dur = 1100, start = performance.now();
+    function step(now){
+      const p = Math.min(1, (now - start) / dur);
+      const eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(eased * target) + suffix;
+      if (p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  });
+
+  /* ---- comparison bars fill-in ---- */
+  document.querySelectorAll(".compare-track i").forEach(bar => {
+    const w = bar.getAttribute("data-w");
+    requestAnimationFrame(() => { bar.style.width = w + "%"; });
+  });
+
+  /* ---- trust score simulator ---- */
+  const guard = document.getElementById("guard");
+  const task  = document.getElementById("task");
+  const heal  = document.getElementById("heal");
+  const hall  = document.getElementById("hall");
+  const arc   = document.getElementById("gaugeArc");
+  const CIRC  = 2 * Math.PI * 94;
+
+  function grade(score){
+    if (score >= 88) return "A+ — client-ready";
+    if (score >= 78) return "A — strong, minor gaps";
+    if (score >= 65) return "B — usable, needs hardening";
+    return "C — not ready to ship";
+  }
+
+  function render(){
+    const g = +guard.value, t = +task.value, h = +heal.value, hl = +hall.value;
+    document.getElementById("valGuard").textContent = g;
+    document.getElementById("valTask").textContent = t;
+    document.getElementById("valHeal").textContent = h;
+    document.getElementById("valHall").textContent = hl;
+
+    const hallTerm = Math.max(0, 100 - 5*hl);
+    const score = 0.3*g + 0.3*t + 0.2*h + 0.2*hallTerm;
+    const rounded = Math.round(score);
+
+    document.getElementById("scoreNum").textContent = rounded;
+    document.getElementById("gradeLabel").textContent = grade(rounded);
+    arc.style.strokeDashoffset = CIRC * (1 - rounded/100);
+
+    document.getElementById("bdGuard").style.width = (0.3*g) + "%";
+    document.getElementById("bdTask").style.width = (0.3*t) + "%";
+    document.getElementById("bdHeal").style.width = (0.2*h) + "%";
+    document.getElementById("bdHall").style.width = (0.2*hallTerm) + "%";
+  }
+  [guard, task, heal, hall].forEach(s => s.addEventListener("input", render));
+  render();
+
+  /* ---- radar chart ---- */
+  const evidence = {
+    "Automation Testing": "Playwright + TypeScript BDD/POM framework built from scratch at Elekta; Java-Appium at Chola Insurance.",
+    "Performance Testing": "JMeter at 10,000+ concurrent threads — Unity SFB Bank & Ryder, distributed on AWS EC2.",
+    "ETL / DB Testing": "Reconciled UI/API output against Snowflake at McKinsey's SourceAI; SQL across MySQL/PostgreSQL.",
+    "Functional & Regression": "Cross-browser, regression, RCA and JIRA defect management across 7+ enterprise engagements.",
+    "Cybersecurity Testing": "Carnival cruise-booking platform — release checks aligned to OWASP Top 10, VAPT-informed.",
+    "AI-Driven QA": "Hallucination, accuracy, relevance, consistency & guardrail testing on McKinsey's SourceAI — my strongest overlap with SDET360.AI."
+  };
+  const labels = Object.keys(evidence);
+  const ctx = document.getElementById("radarChart");
+  if (ctx && window.Chart) {
+    new Chart(ctx, {
+      type: "radar",
+      data: {
+        labels,
+        datasets: [{
+          label: "Self-rated / 10",
+          data: [9, 9, 8, 9, 7, 9],
+          backgroundColor: "rgba(17,17,17,0.08)",
+          borderColor: "#111111",
+          pointBackgroundColor: "#111111",
+          borderWidth: 2,
+          pointRadius: 4
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          r: {
+            min: 0, max: 10, ticks: { display:false, stepSize: 2 },
+            grid: { color: "#DEDEDC" },
+            angleLines: { color: "#DEDEDC" },
+            pointLabels: { font: { size: 11, family: "Inter" }, color: "#444444" }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: (item) => item.formattedValue + " / 10",
+              afterLabel: (item) => {
+                const text = evidence[item.label] || "";
+                return text.match(/.{1,40}(\s|$)/g) || text;
+              }
+            }
+          }
+        }
+      }
+    });
+  }
+
+  /* ---- roadmap tabs ---- */
+  document.querySelectorAll(".tab-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+      document.querySelectorAll(".tab-panel").forEach(p => p.classList.remove("active"));
+      btn.classList.add("active");
+      document.getElementById(btn.dataset.tab).classList.add("active");
+    });
+  });
+
+  /* ---- code tabs ---- */
+  document.querySelectorAll(".code-tab").forEach(btn => {
+    btn.addEventListener("click", () => {
+      document.querySelectorAll(".code-tab").forEach(b => b.classList.remove("active"));
+      document.querySelectorAll(".code-panel pre").forEach(p => p.classList.remove("active"));
+      btn.classList.add("active");
+      document.getElementById(btn.dataset.code).classList.add("active");
+    });
+  });
+
+  const year = document.getElementById("year");
+  if (year) year.textContent = new Date().getFullYear();
+});
+</script>
+
+</body>
+</html>
