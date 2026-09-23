@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SDET Tech — Field Notes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #FAFAF6;
+    --ink: #1B211E;
+    --ink-soft: #565F5A;
+    --line: #DCE2DC;
+    --teal: #0E5A4E;
+    --teal-tint: #E4EEEA;
+    --card: #FFFFFF;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  :root:not([data-theme="light"]) {
+    @media (prefers-color-scheme: dark) {
+      --paper: #14201C;
+      --ink: #EDEFEC;
+      --ink-soft: #A6B0AB;
+      --line: #2A3733;
+      --teal: #6FCDB8;
+      --teal-tint: #1C2C27;
+      --card: #182620;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #14201C;
+    --ink: #EDEFEC;
+    --ink-soft: #A6B0AB;
+    --line: #2A3733;
+    --teal: #6FCDB8;
+    --teal-tint: #1C2C27;
+    --card: #182620;
+  }
+  html { scroll-padding-top: env(safe-area-inset-top, 0px); }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Work Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .hero {
+    position: relative;
+    height: min(46vh, 340px);
+    min-height: 220px;
+    overflow: hidden;
+    background: linear-gradient(160deg, var(--teal) 0%, #0A3A32 100%);
+  }
+  .hero svg { position: absolute; inset: 0; width: 100%; height: 100%; opacity: .35; }
+  .hero-inner {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-bottom: 36px;
+  }
+  .kicker {
+    font-style: italic;
+    color: #DCF3EC;
+    font-size: 1rem;
+    margin: 0 0 6px;
+  }
+  h1 {
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 500;
+    font-size: clamp(1.9rem, 5vw, 2.7rem);
+    line-height: 1.12;
+    color: #FFFFFF;
+    margin: 0;
+    max-width: 15ch;
+  }
+  main {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 34px 24px 80px;
+  }
+  .byline {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 30px;
+  }
+  .avatar {
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    background: var(--teal-tint);
+    color: var(--teal);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 600;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+  }
+  .byline-text { line-height: 1.35; }
+  .byline-name { font-weight: 600; font-size: 0.95rem; }
+  .byline-meta { color: var(--ink-soft); font-size: 0.85rem; }
+  p {
+    font-size: 1.05rem;
+    line-height: 1.65;
+    margin: 0 0 20px;
+    max-width: 62ch;
+  }
+  .lede { font-size: 1.15rem; }
+  .lede strong { font-weight: 600; }
+  hr {
+    border: none;
+    border-top: 1px solid var(--line);
+    margin: 36px 0;
+  }
+  h2 {
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 500;
+    font-size: 1.5rem;
+    margin: 0 0 16px;
+    line-height: 1.25;
+  }
+  h3 {
+    font-size: 1.02rem;
+    font-weight: 600;
+    margin: 22px 0 8px;
+    color: var(--ink);
+  }
+  ul {
+    margin: 0 0 18px;
+    padding-left: 0;
+    list-style: none;
+  }
+  li {
+    position: relative;
+    padding-left: 22px;
+    margin-bottom: 10px;
+    font-size: 1.02rem;
+    line-height: 1.55;
+    color: var(--ink-soft);
+  }
+  li::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 9px;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--teal);
+  }
+  li strong { color: var(--ink); font-weight: 600; }
+  .stat-row {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    background: var(--teal-tint);
+    border-radius: 10px;
+    padding: 20px 22px;
+    margin: 10px 0 26px;
+  }
+  .stat { flex: 1 1 100px; }
+  .stat-num {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 1.6rem;
+    color: var(--teal);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.82rem;
+    color: var(--ink-soft);
+    margin-top: 4px;
+  }
+  .closing {
+    color: var(--ink-soft);
+    font-size: 0.95rem;
+  }
+  .closing a {
+    color: var(--teal);
+    text-decoration: none;
+    border-bottom: 1px solid var(--teal);
+  }
+  @media (max-width: 480px) {
+    .stat-row { padding: 16px; gap: 14px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <svg viewBox="0 0 700 340" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <pattern id="grid" width="46" height="46" patternUnits="userSpaceOnUse">
+        <path d="M46 0H0V46" fill="none" stroke="#FFFFFF" stroke-width="0.6"/>
+      </pattern>
+    </defs>
+    <rect width="700" height="340" fill="url(#grid)"/>
+    <path d="M110 210 L155 255 L260 130" fill="none" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"/>
+    <path d="M440 240 L485 285 L590 160" fill="none" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" opacity="0.28"/>
+  </svg>
+  <div class="hero-inner">
+    <p class="kicker">Testing, Reimagined</p>
+    <h1>SDET Tech: Where AI Meets Quality Engineering</h1>
+  </div>
+</div>
+
+<main>
+  <div class="byline">
+    <div class="avatar">TV</div>
+    <div class="byline-text">
+      <div class="byline-name">Taniya Vishwakarma</div>
+      <div class="byline-meta">September 24, 2026 · 2 min read</div>
+    </div>
+  </div>
+
+  <p class="lede"><strong>SDET Tech is repositioning QA from a reactive checkpoint into a proactive, AI-driven engine for release confidence.</strong> The company builds around two connected pillars: service depth across the testing lifecycle, and platform intelligence through its product, SDET360.AI.</p>
+
+  <hr>
+
+  <h2>Pillar 1 — The Unified Testing Umbrella</h2>
+  <p>Instead of specializing in one niche, SDET Tech covers the full spectrum a release needs, under one roof.</p>
+
+  <h3>Automation Testing</h3>
+  <ul>
+    <li>Maintainable frameworks — <strong>Selenium, Cypress, Playwright</strong> — wired directly into CI/CD for faster, more reliable releases.</li>
+  </ul>
+
+  <h3>Performance Testing</h3>
+  <ul>
+    <li>Load, stress, and scalability validation built to surface bottlenecks before peak traffic does.</li>
+  </ul>
+
+  <h3>Accessibility & Cybersecurity</h3>
+  <ul>
+    <li>WCAG/ADA compliance checks and penetration testing, so inclusion and security are never afterthoughts.</li>
+  </ul>
+
+  <h3>ETL / Database Testing</h3>
+  <ul>
+    <li>Deep reconciliation checks that guarantee data integrity across migrations and BI pipelines.</li>
+  </ul>
+
+  <hr>
+
+  <h2>Pillar 2 — SDET360.AI, the Intelligence Layer</h2>
+  <p>This is the differentiator: one AI platform that compresses the whole QA lifecycle into a single workflow.</p>
+
+  <ul>
+    <li><strong>Requirement → Story</strong> — BRDs become acceptance-criteria-ready user stories in minutes.</li>
+    <li><strong>Story → Test Case</strong> — AI drafts test cases, edge scenarios, and test data, keeping humans in charge of the final quality bar.</li>
+    <li><strong>Test Case → Script</strong> — Automation code is generated across Playwright, Selenium, Cypress, Robot, and Appium, then plugged straight into Jenkins or GitHub Actions.</li>
+    <li><strong>Execution → Insight</strong> — Real-time dashboards flag coverage gaps before they become production incidents.</li>
+  </ul>
+
+  <div class="stat-row">
+    <div class="stat"><div class="stat-num">2x</div><div class="stat-label">Faster story &amp; test case generation</div></div>
+    <div class="stat"><div class="stat-num">3x</div><div class="stat-label">Faster automation code generation</div></div>
+    <div class="stat"><div class="stat-num">2x</div><div class="stat-label">Savings on maintenance</div></div>
+  </div>
+
+  <p class="closing">Explore more at <a href="https://sdettech.com" target="_blank" rel="noopener">sdettech.com</a></p>
+</main>
+
+</body>
+</html>
