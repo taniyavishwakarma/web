@@ -113,18 +113,40 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 .bd-cell .bd-track i{display:block;height:100%;background:var(--ink);border-radius:4px;transition:width .3s}
 
 /* chart card */
-.chart-card{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:28px;margin-top:26px;box-shadow:var(--shadow-soft)}
-.radar-wrap{position:relative;max-width:480px;margin:0 auto}
+:root{ --accent:#0E7C66; --accent-soft:#E4F1EC; }
+.chart-card{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:32px;margin-top:26px;box-shadow:var(--shadow-soft)}
+.chart-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:22px;flex-wrap:wrap}
+.chart-avg{display:inline-flex;align-items:baseline;gap:6px;background:var(--accent-soft);color:var(--accent);border-radius:99px;padding:8px 16px;font-family:"Plus Jakarta Sans",sans-serif;font-weight:800;font-size:14px}
+.chart-avg span{font-size:11px;font-weight:600;color:#2F6E5F}
+.chart-grid{display:grid;grid-template-columns:1fr 300px;gap:36px;align-items:center}
+.radar-wrap{position:relative;max-width:440px;margin:0 auto;width:100%}
 .radar-wrap svg{width:100%;height:auto;overflow:visible}
 .radar-grid{fill:none;stroke:var(--border)}
 .radar-axis{stroke:var(--border)}
-.radar-shape{fill:rgba(17,17,17,.07);stroke:var(--ink);stroke-width:2;transform-origin:center;transform-box:fill-box;transform:scale(.001);transition:transform .9s cubic-bezier(.16,1,.3,1)}
+.radar-shape{fill:url(#radarFill);stroke:var(--accent);stroke-width:2.5;transform-origin:center;transform-box:fill-box;transform:scale(.001);transition:transform .9s cubic-bezier(.16,1,.3,1)}
 .chart-card.is-visible .radar-shape{transform:scale(1)}
-.radar-point{fill:var(--ink);stroke:#fff;stroke-width:2;cursor:pointer}
-.radar-label{font-family:Inter,sans-serif;font-size:11px;fill:#444;font-weight:600}
+.radar-point{fill:var(--accent);stroke:#fff;stroke-width:2;cursor:pointer}
+.radar-label{font-family:Inter,sans-serif;font-size:11.5px;fill:#3a3a3a;font-weight:700}
 .radar-tip{position:absolute;max-width:220px;background:var(--ink);color:#fff;font-size:11.5px;line-height:1.5;padding:10px 13px;border-radius:10px;box-shadow:var(--shadow);pointer-events:none;opacity:0;transition:opacity .15s;z-index:5}
 .radar-tip.show{opacity:1}
 .radar-tip b{display:block;font-size:12px;margin-bottom:3px}
+
+.legend-list{display:flex;flex-direction:column;gap:14px}
+.legend-row{display:grid;grid-template-columns:34px 1fr;gap:12px;align-items:start;padding-bottom:12px;border-bottom:1px solid var(--border)}
+.legend-row:last-child{border-bottom:none;padding-bottom:0}
+.legend-score{font-family:"Plus Jakarta Sans",sans-serif;font-weight:800;font-size:17px;color:var(--accent)}
+.legend-label{font-size:12.5px;font-weight:700;color:var(--ink);margin-bottom:3px}
+.legend-evi{font-size:11.5px;color:var(--muted);line-height:1.5}
+.legend-bar{height:4px;border-radius:3px;background:var(--surface-soft);margin-top:6px;overflow:hidden}
+.legend-bar i{display:block;height:100%;background:var(--accent);border-radius:3px}
+
+.logo-strip{margin-top:28px;padding-top:26px;border-top:1px solid var(--border)}
+.logo-strip .ls-label{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted-2);font-weight:700;margin-bottom:16px}
+.logo-strip .ls-row{display:flex;flex-wrap:wrap;gap:14px}
+.logo-strip .ls-row div{display:flex;align-items:center;justify-content:center;background:var(--surface-soft);border:1px solid var(--border);border-radius:12px;padding:14px 22px;transition:transform .2s,box-shadow .2s,background .2s}
+.logo-strip .ls-row div:hover{transform:translateY(-2px);box-shadow:var(--shadow-soft);background:#fff}
+.logo-strip img{height:26px;width:auto;filter:grayscale(1);opacity:.7;transition:opacity .2s,filter .2s}
+.logo-strip .ls-row div:hover img{filter:none;opacity:1}
 
 /* live dot */
 .live-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#2E9E4F;margin-right:6px;position:relative;top:-1px}
@@ -135,9 +157,6 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 .reveal{opacity:0;transform:translateY(16px);transition:opacity .7s ease, transform .7s cubic-bezier(.16,1,.3,1)}
 .reveal.is-visible{opacity:1;transform:translateY(0)}
 
-.logo-strip{display:flex;flex-wrap:wrap;gap:26px;align-items:center;margin-top:24px;padding-top:24px;border-top:1px solid var(--border)}
-.logo-strip img{height:22px;width:auto;filter:grayscale(1);opacity:.55;transition:opacity .2s,filter .2s}
-.logo-strip img:hover{filter:none;opacity:1}
 
 /* tabs (roadmap) */
 .tabbar{display:flex;gap:8px;margin-top:22px;flex-wrap:wrap}
@@ -184,6 +203,8 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
   .breakdown{grid-template-columns:repeat(2,1fr)}
   .compare-row{grid-template-columns:110px 1fr 34px}
   .idea.flagship{padding:22px}
+  .chart-grid{grid-template-columns:1fr}
+  .legend-list{margin-top:8px}
 }
 @media (max-width:640px){
   .idea{grid-template-columns:36px 1fr}
@@ -219,8 +240,8 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
           <h1 class="doc-title">The value I want to add, not just the work I can do</h1>
           <p class="doc-sub">
             Most QA hires optimize for "can execute your existing service lines." I can — the proof is
-            below — but that's table stakes. Scroll for the actual gap I think SDET Tech is sitting next
-            to, and a live calculator for the metric I'd want to build.
+            below — but that's table stakes. Scroll for an idea I'm genuinely excited about, and a live
+            calculator for the metric I'd love to help build here.
           </p>
         </div>
         <div class="hero-photo">
@@ -234,7 +255,7 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
       <div class="container stat-strip-inner">
         <div class="stat-cell"><strong data-count="40" data-suffix="%">0%</strong><span>of enterprise apps projected to run task-specific AI agents by end of 2026 — Gartner</span></div>
         <div class="stat-cell"><strong data-count="2" data-suffix="">0</strong><span>regulations (EU AI Act, Colorado AI Act) now requiring algorithmic accountability</span></div>
-        <div class="stat-cell"><strong data-count="7" data-suffix="th">0</strong><span>service line SDET Tech doesn't productize yet — the one I want to build</span></div>
+        <div class="stat-cell"><strong data-count="7" data-suffix="th">0</strong><span>service line I'd be excited to help pioneer, alongside the six you've already built</span></div>
       </div>
     </div>
   </section>
@@ -242,42 +263,40 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
   <section class="section">
     <div class="container">
       <div class="kicker">The bigger idea</div>
-      <h2 class="h">Every QA vendor now says "AI-powered." Almost none can prove it's trustworthy.</h2>
+      <h2 class="h">Speed is a solved problem. Trust is the next frontier.</h2>
       <p class="thesis">
-        AI can generate a test case in seconds. It can't yet decide whether that test case — or the
-        agent, chatbot, or copilot it's testing — is actually <em>trustworthy</em>. That's still a human
-        quality judgment, and right now almost nobody in QA has turned it into a repeatable, sellable
-        practice.
+        AI can generate a test case in seconds. Deciding whether that test case — or the agent, chatbot,
+        or copilot it's testing — is truly <em>trustworthy</em> is still a human judgment call. That's the
+        part I find most exciting about where QA is headed, and it's the part I'd love to spend my time
+        on here.
       </p>
       <p class="lede">
-        Analysts describe the same shift as a move from a "test factory" model to a "system of
-        confidence." SDET Tech is already circling it — your blog has covered agentic AI frameworks and
-        AI performance testing. I don't think the gap is awareness. I think "AI quality" is still an
-        extra checklist inside existing service lines, instead of its own practice with its own number.
+        Analysts describe this as a shift from a "test factory" model to a "system of confidence." SDET
+        Tech already feels ahead of that curve to me — your blog's coverage of agentic AI frameworks and
+        AI performance testing tells me the team is already thinking about exactly this. I'd love to help
+        take that thinking one step further: turning it into a signature practice with its own name and
+        its own number, something SDET360.AI could become known for.
       </p>
 
       <div class="compare">
-        <div class="compare-row"><span class="lbl">Release confidence</span><div class="compare-track"><i data-w="35"></i></div><span class="val">35</span></div>
-        <div class="compare-row"><span class="lbl">Release confidence</span><div class="compare-track now"><i data-w="82"></i></div><span class="val">82</span></div>
-        <div class="compare-row"><span class="lbl">Client differentiation</span><div class="compare-track"><i data-w="20"></i></div><span class="val">20</span></div>
-        <div class="compare-row"><span class="lbl">Client differentiation</span><div class="compare-track now"><i data-w="74"></i></div><span class="val">74</span></div>
-        <div class="compare-row"><span class="lbl">Time to detect drift</span><div class="compare-track"><i data-w="30"></i></div><span class="val">30</span></div>
-        <div class="compare-row"><span class="lbl">Time to detect drift</span><div class="compare-track now"><i data-w="88"></i></div><span class="val">88</span></div>
+        <div class="compare-row"><span class="lbl">Release confidence</span><div class="compare-track now"><i data-w="88"></i></div><span class="val">88</span></div>
+        <div class="compare-row"><span class="lbl">Client differentiation</span><div class="compare-track now"><i data-w="82"></i></div><span class="val">82</span></div>
+        <div class="compare-row"><span class="lbl">Time to detect drift</span><div class="compare-track now"><i data-w="90"></i></div><span class="val">90</span></div>
       </div>
-      <div class="compare-legend"><span><i class="dot-then"></i>Checklist-inside-a-service-line (today)</span><span><i class="dot-now"></i>Trust Score as its own practice</span></div>
-      <p class="lede" style="margin-top:4px;font-size:11.5px;color:var(--muted-2)">Illustrative scoring, 0–100 — my own estimate of the gap, not a client benchmark.</p>
+      <div class="compare-legend"><span><i class="dot-now"></i>What a Trust Score practice could look like, at maturity</span></div>
+      <p class="lede" style="margin-top:4px;font-size:11.5px;color:var(--muted-2)">Illustrative scoring, 0–100 — my own estimate of the opportunity, not a client benchmark.</p>
 
       <div class="idea flagship reveal">
         <div class="idea-num">★</div>
         <div>
-          <h3>What I'd build: a Trust Score, not just a test report</h3>
+          <h3>What I'd love to build: a Trust Score, not just a test report</h3>
           <p>
             A scorecard — hallucination rate, guardrail adherence, agent task-success rate, self-healing
             accuracy — run against a client's AI or agentic feature the same way JMeter runs a load
-            profile: repeatably, on every release, with a number at the end. Something a client can put in
-            their own release notes, the way you put "GPTW Certified" on your homepage.
+            profile: repeatably, on every release, with a number at the end. Something a client could put
+            in their own release notes, the way SDET Tech puts "GPTW Certified" on its homepage.
           </p>
-          <p class="why"><b>Why this is a business idea, not just a QA task:</b> it turns "we also do AI testing" into a named, demoable practice — a line item separate from hourly QA services, and the one thing every other automation vendor is currently improvising rather than productizing.</p>
+          <p class="why"><b>Why I'd frame this as a business idea, not just a QA task:</b> it turns "we also do AI testing" into a named, demoable practice — a story worth its own case study and webinar, sitting proudly next to the six service lines already here.</p>
         </div>
       </div>
     </div>
@@ -344,17 +363,25 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
       <p class="lede">A Trust Score is only worth building if the person building it can already run disciplined QA at enterprise scale. Self-rated out of 10 — hover a point for what it's based on.</p>
 
       <div class="chart-card reveal">
-        <div class="radar-wrap" id="radarWrap"></div>
-      </div>
-
-      <div class="logo-strip" aria-label="Enterprise environments referenced above">
-        <img src="assets/mckinsey-logo-clean.png" alt="McKinsey & Company">
-        <img src="assets/imperial-brands-logo-clean.png" alt="Imperial Brands">
-        <img src="assets/elekta-logo-clean.png" alt="Elekta">
-        <img src="assets/carnival-logo-clean.png" alt="Carnival">
-        <img src="assets/ryder-logo-clean.png" alt="Ryder">
-        <img src="assets/unity-sfb-logo-clean.png" alt="Unity Small Finance Bank">
-        <img src="assets/novartis-logo-clean.png" alt="Novartis">
+        <div class="chart-head">
+          <span class="chart-avg" id="chartAvg">— <span>avg / 10</span></span>
+        </div>
+        <div class="chart-grid">
+          <div class="radar-wrap" id="radarWrap"></div>
+          <div class="legend-list" id="legendList"></div>
+        </div>
+        <div class="logo-strip">
+          <div class="ls-label">Enterprise environments referenced above</div>
+          <div class="ls-row">
+            <div><img src="assets/mckinsey-logo-clean.png" alt="McKinsey & Company"></div>
+            <div><img src="assets/imperial-brands-logo-clean.png" alt="Imperial Brands"></div>
+            <div><img src="assets/elekta-logo-clean.png" alt="Elekta"></div>
+            <div><img src="assets/carnival-logo-clean.png" alt="Carnival"></div>
+            <div><img src="assets/ryder-logo-clean.png" alt="Ryder"></div>
+            <div><img src="assets/unity-sfb-logo-clean.png" alt="Unity Small Finance Bank"></div>
+            <div><img src="assets/novartis-logo-clean.png" alt="Novartis"></div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -376,7 +403,7 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
       </div>
       <div class="tab-panel" id="t2">
         <h4>Locator-resilience checks alongside the locator generator</h4>
-        <p>A short Playwright harness that re-runs generated locators against intentionally-mutated DOM states (attribute renamed, element re-nested, class removed) and reports which ones would have needed self-healing. Turns "self-healing" from a claim into the scorecard's second metric.</p>
+        <p>A short Playwright harness that re-runs generated locators against intentionally-mutated DOM states (attribute renamed, element re-nested, class removed) and reports which ones would have needed self-healing. Turns "self-healing" into a number clients can watch improve, release over release — the scorecard's second metric.</p>
       </div>
       <div class="tab-panel" id="t3">
         <h4>Performance budgets as a CI/CD gate, not a post-release report</h4>
@@ -427,7 +454,7 @@ perf_gate:
   <section class="section">
     <div class="container">
       <div class="closing reveal">
-        <h2>I don't just want to pass your test suites. I want to help build the next service line.</h2>
+        <h2>I'd love to bring more than test coverage — I want to help build what SDET Tech does next.</h2>
         <p>This page is part of my portfolio, prepared specifically for this conversation. Full experience, projects and resume are one click away.</p>
         <div class="closing-links">
           <a class="cl-primary" href="index.html#resume">View full resume →</a>
@@ -441,7 +468,7 @@ perf_gate:
 </main>
 
 <footer class="footer">
-  <div class="container">Taniya Vishwakarma · SDET Tech, Noida &amp; Bengaluru · taniyav.in</div>
+  <div class="container">Taniya Vishwakarma · SDET II · QA Automation Engineer · taniyav.in</div>
 </footer>
 
 <script>
@@ -478,8 +505,8 @@ document.addEventListener("DOMContentLoaded", () => {
   function grade(score){
     if (score >= 88) return "A+ — client-ready";
     if (score >= 78) return "A — strong, minor gaps";
-    if (score >= 65) return "B — usable, needs hardening";
-    return "C — not ready to ship";
+    if (score >= 65) return "B — promising, still maturing";
+    return "C — early stage, room to grow";
   }
 
   function render(){
@@ -521,12 +548,18 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!wrap) return;
     const labels = Object.keys(evidence);
     const N = labels.length;
-    const size = 420, cx = size/2, cy = size/2 - 6, maxR = 140;
+    const size = 420, cx = size/2, cy = size/2 - 6, maxR = 150;
     const rings = [0.2, 0.4, 0.6, 0.8, 1];
     const angle = i => (Math.PI * 2 * i) / N - Math.PI/2;
     const pt = (i, frac) => [ cx + Math.cos(angle(i)) * maxR * frac, cy + Math.sin(angle(i)) * maxR * frac ];
 
-    let svg = `<svg viewBox="0 0 ${size} ${size}">`;
+    let svg = `<svg viewBox="0 0 ${size} ${size}">
+      <defs>
+        <linearGradient id="radarFill" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#0E7C66" stop-opacity="0.28"/>
+          <stop offset="100%" stop-color="#0E7C66" stop-opacity="0.06"/>
+        </linearGradient>
+      </defs>`;
 
     // grid rings
     rings.forEach(r => {
@@ -544,18 +577,18 @@ document.addEventListener("DOMContentLoaded", () => {
     // points
     labels.forEach((label, i) => {
       const [x, y] = pt(i, radarData[i]/10);
-      svg += `<circle class="radar-point" data-label="${label}" data-value="${radarData[i]}" cx="${x}" cy="${y}" r="5"/>`;
+      svg += `<circle class="radar-point" data-label="${label}" data-value="${radarData[i]}" cx="${x}" cy="${y}" r="5.5"/>`;
     });
     // labels
     labels.forEach((label, i) => {
-      const [x, y] = pt(i, 1.22);
+      const [x, y] = pt(i, 1.2);
       const a = angle(i);
       const anchor = Math.cos(a) > 0.3 ? "start" : Math.cos(a) < -0.3 ? "end" : "middle";
       const words = label.split(" ");
       const mid = Math.ceil(words.length/2);
       const line1 = words.slice(0, mid).join(" "), line2 = words.slice(mid).join(" ");
       svg += `<text class="radar-label" x="${x}" y="${y - 4}" text-anchor="${anchor}">${line1}</text>`;
-      if (line2) svg += `<text class="radar-label" x="${x}" y="${y + 10}" text-anchor="${anchor}">${line2}</text>`;
+      if (line2) svg += `<text class="radar-label" x="${x}" y="${y + 12}" text-anchor="${anchor}">${line2}</text>`;
     });
     svg += `</svg><div class="radar-tip" id="radarTip"></div>`;
     wrap.innerHTML = svg;
@@ -578,6 +611,25 @@ document.addEventListener("DOMContentLoaded", () => {
       p.addEventListener("touchstart", showTip, {passive:true});
       p.addEventListener("mouseleave", () => tip.classList.remove("show"));
     });
+
+    // always-visible legend, same data — no hover required to read it
+    const legend = document.getElementById("legendList");
+    if (legend) {
+      legend.innerHTML = labels.map((label, i) => `
+        <div class="legend-row">
+          <div class="legend-score">${radarData[i]}</div>
+          <div>
+            <div class="legend-label">${label}</div>
+            <div class="legend-evi">${evidence[label]}</div>
+            <div class="legend-bar"><i style="width:${radarData[i]*10}%"></i></div>
+          </div>
+        </div>`).join("");
+    }
+    const avgEl = document.getElementById("chartAvg");
+    if (avgEl) {
+      const avg = (radarData.reduce((a,b) => a+b, 0) / radarData.length).toFixed(1);
+      avgEl.innerHTML = `${avg} <span>avg / 10</span>`;
+    }
   }
   buildRadar();
 
