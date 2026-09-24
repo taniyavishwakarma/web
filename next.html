@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="description" content="Taniya Vishwakarma — Strategic SDET II & Quality Engineering Proposal for SDET Tech" />
+  <title>Taniya Vishwakarma × SDET Tech | Quality Engineering Value Proposition</title>
+  <link rel="icon" href="assets/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg: #F8F9FA;
+      --surface: #FFFFFF;
+      --surface-subtle: #F1F3F5;
+      --border: #E5E7EB;
+      --border-focus: #111827;
+      --text: #1F2937;
+      --heading: #111827;
+      --muted: #6B7280;
+      --brand: #2563EB;
+      --brand-soft: #EFF6FF;
+      --brand-dark: #1E40AF;
+      --accent: #059669;
+      --accent-soft: #ECFDF5;
+      --radius: 12px;
+      --radius-lg: 18px;
+      --max: 1040px;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+      --shadow-md: 0 10px 25px -5px rgba(0,0,0,0.05), 0 8px 10px -6px rgba(0,0,0,0.03);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { text-decoration: none; color: inherit; }
+    .container { width: min(calc(100% - 40px), var(--max)); margin: 0 auto; }
+
+    /* Header */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(248, 249, 250, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .navbar {
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .brand {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      font-size: 20px;
+      letter-spacing: -0.03em;
+      color: var(--heading);
+    }
+    .brand span { color: var(--brand); }
+    .back-link {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.15s ease;
+    }
+    .back-link:hover { color: var(--heading); }
+
+    /* Hero Section */
+    .hero {
+      padding: 64px 0 44px;
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 40px;
+      align-items: center;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--brand);
+      background: var(--brand-soft);
+      padding: 6px 12px;
+      border-radius: 99px;
+      margin-bottom: 18px;
+    }
+    .badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--brand);
+    }
+    h1.hero-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(30px, 4vw, 42px);
+      font-weight: 800;
+      color: var(--heading);
+      line-height: 1.18;
+      letter-spacing: -0.03em;
+      margin-bottom: 16px;
+    }
+    .hero-sub {
+      font-size: 16px;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-size: 13.5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .btn-dark {
+      background: var(--heading);
+      color: #fff;
+    }
+    .btn-dark:hover { background: #000; transform: translateY(-1px); }
+    .btn-outline {
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--heading);
+    }
+    .btn-outline:hover { border-color: var(--heading); }
+
+    .hero-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+    }
+    .hero-card-title {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+    .metric-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .metric-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+    .metric-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .metric-label { font-size: 13px; font-weight: 500; color: var(--text); }
+    .metric-val {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--brand);
+    }
+
+    /* Section Styling */
+    .section { padding: 64px 0; }
+    .section-tight { padding: 36px 0; }
+    .section-divider { border-bottom: 1px solid var(--border); }
+    .eyebrow {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--brand);
+      margin-bottom: 8px;
+    }
+    h2.section-heading {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(24px, 3vw, 30px);
+      font-weight: 800;
+      color: var(--heading);
+      letter-spacing: -0.025em;
+      margin-bottom: 14px;
+    }
+    .section-lead {
+      font-size: 16px;
+      color: var(--muted);
+      max-width: 72ch;
+      margin-bottom: 32px;
+    }
+
+    /* Value Pillars Grid */
+    .pillar-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .pillar-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .pillar-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--brand);
+      margin-bottom: 12px;
+    }
+    .pillar-card h3 {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--heading);
+      margin-bottom: 10px;
+    }
+    .pillar-card p {
+      font-size: 13.5px;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+    .pillar-proof {
+      font-size: 12px;
+      color: var(--heading);
+      font-weight: 600;
+      background: var(--surface-subtle);
+      padding: 8px 12px;
+      border-radius: 6px;
+      border-left: 3px solid var(--brand);
+    }
+
+    /* Matrix Table (Alignment) */
+    .matrix-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+    .matrix-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 13.5px;
+    }
+    .matrix-table th {
+      background: var(--surface-subtle);
+      padding: 14px 20px;
+      font-weight: 700;
+      color: var(--heading);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-bottom: 1px solid var(--border);
+    }
+    .matrix-table td {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    .matrix-table tr:last-child td { border-bottom: none; }
+    .matrix-table tr:hover td { background: #FCFCFD; }
+    .matrix-tag {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      background: var(--surface-subtle);
+      padding: 3px 8px;
+      border-radius: 4px;
+      margin-top: 4px;
+    }
+
+    /* Interactive Pipeline Simulator */
+    .sim-container {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      box-shadow: var(--shadow-md);
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 36px;
+      align-items: center;
+    }
+    .control-group {
+      margin-bottom: 20px;
+    }
+    .control-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--heading);
+      margin-bottom: 8px;
+    }
+    .control-val {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      color: var(--brand);
+    }
+    input[type=range] {
+      -webkit-appearance: none;
+      width: 100%;
+      height: 6px;
+      background: var(--surface-subtle);
+      border-radius: 4px;
+      outline: none;
+    }
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--brand);
+      cursor: pointer;
+      border: 2px solid #fff;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    }
+    .sim-output {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      text-align: center;
+    }
+    .sim-score-ring {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 52px;
+      font-weight: 800;
+      color: var(--heading);
+      line-height: 1;
+      margin: 12px 0 6px;
+    }
+    .sim-badge {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 99px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      margin-bottom: 14px;
+    }
+    .sim-desc {
+      font-size: 12.5px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* Tabs & Implementation Code */
+    .tab-bar {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 8px;
+    }
+    .tab-btn {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 8px 16px;
+      border-radius: 6px;
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .tab-btn.active {
+      background: var(--surface);
+      color: var(--brand);
+      box-shadow: var(--shadow-sm);
+    }
+    .code-panel {
+      background: #0F172A;
+      color: #E2E8F0;
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      overflow-x: auto;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12.5px;
+      line-height: 1.7;
+    }
+    .code-panel pre { display: none; margin: 0; }
+    .code-panel pre.active { display: block; }
+    .code-header {
+      font-size: 11px;
+      color: #64748B;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* Footer Banner */
+    .cta-banner {
+      background: var(--heading);
+      color: #fff;
+      border-radius: var(--radius-lg);
+      padding: 44px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 32px;
+    }
+    .cta-copy h2 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 24px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+    .cta-copy p {
+      font-size: 14.5px;
+      color: #9CA3AF;
+      max-width: 54ch;
+    }
+    .cta-links {
+      display: flex;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+    .btn-light {
+      background: #fff;
+      color: var(--heading);
+    }
+    .btn-light:hover { background: #F3F4F6; }
+
+    footer.site-footer {
+      padding: 32px 0 48px;
+      font-size: 12.5px;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    @media (max-width: 820px) {
+      .hero-grid, .sim-container, .cta-banner { grid-template-columns: 1fr; }
+      .pillar-grid { grid-template-columns: 1fr; }
+      .cta-banner { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header class="site-header">
+    <nav class="navbar container">
+      <a class="brand" href="index.html">Taniya<span>.</span></a>
+      <a class="back-link" href="index.html">← Back to Main Portfolio</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- HERO: Clean, Crisp, & Aligned -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="badge"><span class="badge-dot"></span> Value Proposition · SDET Tech</div>
+          <h1 class="hero-title">Engineering Reliable Automation & Scalable Performance for SDET Tech</h1>
+          <p class="hero-sub">
+            Bridging robust deterministic test architectures (Playwright, JMeter at 10K+ threads, Snowflake ETL) with autonomous, self-healing QA workflows.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-dark" href="#pipeline-gate">Inspect Quality Gates</a>
+            <a class="btn btn-outline" href="index.html#projects">View Enterprise Track Record</a>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <div class="hero-card-title">Production Readiness Snapshot</div>
+          <div class="metric-list">
+            <div class="metric-item">
+              <span class="metric-label">Framework Specialization</span>
+              <span class="metric-val">Playwright / TS / BDD</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">Concurrency Benchmarking</span>
+              <span class="metric-val">10,000+ Threads (JMeter)</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">Data Validation Pipeline</span>
+              <span class="metric-val">Snowflake & REST/GraphQL</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">Target Architecture</span>
+              <span class="metric-val">SDET360.AI Integration</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STRATEGIC FIT: 3 Pillars -->
+    <section class="section section-divider">
+      <div class="container">
+        <div class="eyebrow">Strategic Value Proposition</div>
+        <h2 class="section-heading">How I Add Immediate Value to SDET Tech’s Core Offerings</h2>
+        <p class="section-lead">
+          SDET Tech accelerates delivery using autonomous test agents and modern automation frameworks. Here is how my enterprise experience connects directly to your capabilities.
+        </p>
+
+        <div class="pillar-grid">
+          <div class="pillar-card">
+            <div>
+              <div class="pillar-tag">01 / AUTONOMOUS & SELF-HEALING QA</div>
+              <h3>Resilient Playwright Frameworks</h3>
+              <p>
+                Developing maintainable POM & BDD Playwright architectures designed to interface with SDET360.AI’s self-healing locator capabilities, reducing test flake in fast-moving release cycles.
+              </p>
+            </div>
+            <div class="pillar-proof">
+              Proven at Elekta (Playwright BDD from scratch) & Carnival (200+ E2E cases).
+            </div>
+          </div>
+
+          <div class="pillar-card">
+            <div>
+              <div class="pillar-tag">02 / AI & DATA RECONCILIATION</div>
+              <h3>Automated Agent & ETL Verification</h3>
+              <p>
+                Validating complex multi-step workflows, API payloads, and underlying database states against target data warehouses (Snowflake, PostgreSQL) to verify output consistency and business logic.
+              </p>
+            </div>
+            <div class="pillar-proof">
+              Delivered on McKinsey SourceAI (UI, GraphQL, and Snowflake data pipelines).
+            </div>
+          </div>
+
+          <div class="pillar-card">
+            <div>
+              <div class="pillar-tag">03 / CONTINUOUS PERFORMANCE</div>
+              <h3>Shift-Left Load & Latency Gates</h3>
+              <p>
+                Embedding distributed JMeter load profiles (p95 latency, error rates, RPS budgets) directly into CI/CD pipelines to catch performance regressions before staging deployment.
+              </p>
+            </div>
+            <div class="pillar-proof">
+              Scaled to 10K+ concurrent threads on AWS EC2 for Unity SFB Bank & Ryder.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ALIGNMENT MATRIX: SDET Tech Need vs Taniya Vishwakarma Execution -->
+    <section class="section section-divider">
+      <div class="container">
+        <div class="eyebrow">Direct Alignment</div>
+        <h2 class="section-heading">Capabilities Mapped to SDET Tech Services</h2>
+        <p class="section-lead">
+          A clear side-by-side view of SDET Tech priorities and the practical foundation I bring to each.
+        </p>
+
+        <div class="matrix-card">
+          <table class="matrix-table">
+            <thead>
+              <tr>
+                <th style="width: 25%;">SDET Tech Priority</th>
+                <th style="width: 40%;">How I Execute & Scale It</th>
+                <th style="width: 35%;">Direct Production Precedent</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Next-Gen Automation</strong><br><span class="matrix-tag">Web & Mobile</span></td>
+                <td>Architecting clean Page Object Models in Playwright and Appium with cross-browser execution and reusable session handling.</td>
+                <td>Engineered zero-to-one Playwright frameworks (Elekta) and mobile coverage (Chola Insurance).</td>
+              </tr>
+              <tr>
+                <td><strong>AI-Powered Testing (SDET360)</strong><br><span class="matrix-tag">Agentic Workflows</span></td>
+                <td>Designing deterministic validation harnesses around AI-driven outputs—evaluating consistency, schema integrity, and regression drift.</td>
+                <td>Validated AI-driven sourcing workflows and complex contract logic on McKinsey SourceAI.</td>
+              </tr>
+              <tr>
+                <td><strong>Performance & Reliability</strong><br><span class="matrix-tag">High-Volume Stress</span></td>
+                <td>Simulating high-concurrency enterprise traffic using distributed JMeter nodes with automated threshold gating in CI/CD.</td>
+                <td>Conducted stress and endurance testing for 10,000+ concurrent banking users at Unity SFB Bank.</td>
+              </tr>
+              <tr>
+                <td><strong>Data & API Integrity</strong><br><span class="matrix-tag">Enterprise Backend</span></td>
+                <td>Reconciling high-throughput REST and GraphQL endpoints against cloud data platforms to ensure transaction integrity.</td>
+                <td>Snowflake and REST/GraphQL data reconciliation across mission-critical enterprise applications.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- INTERACTIVE QUALITY GATE SIMULATOR -->
+    <section class="section section-divider" id="pipeline-gate">
+      <div class="container">
+        <div class="eyebrow">Interactive Quality Gate</div>
+        <h2 class="section-heading">Shift-Left Release Confidence Index</h2>
+        <p class="section-lead">
+          In high-velocity CI/CD pipelines, release readiness shouldn't be subjective. Adjust the core parameters below to see how automated verification gates determine merge and release eligibility.
+        </p>
+
+        <div class="sim-container">
+          <div>
+            <div class="control-group">
+              <div class="control-label">
+                <span>Playwright E2E Pass Rate</span>
+                <span class="control-val" id="valPass">98%</span>
+              </div>
+              <input type="range" id="inputPass" min="80" max="100" value="98">
+            </div>
+
+            <div class="control-group">
+              <div class="control-label">
+                <span>API & Schema Consistency</span>
+                <span class="control-val" id="valSchema">99%</span>
+              </div>
+              <input type="range" id="inputSchema" min="80" max="100" value="99">
+            </div>
+
+            <div class="control-group">
+              <div class="control-label">
+                <span>Self-Healing Locator Stability</span>
+                <span class="control-val" id="valLocator">92%</span>
+              </div>
+              <input type="range" id="inputLocator" min="70" max="100" value="92">
+            </div>
+
+            <div class="control-group">
+              <div class="control-label">
+                <span>p95 Latency Compliance (JMeter)</span>
+                <span class="control-val" id="valLatency">95%</span>
+              </div>
+              <input type="range" id="inputLatency" min="70" max="100" value="95">
+            </div>
+          </div>
+
+          <div class="sim-output">
+            <span class="eyebrow">Calculated Readiness</span>
+            <div class="sim-score-ring" id="totalScore">96%</div>
+            <div class="sim-badge" id="scoreBadge">Release Approved: Build Healthy</div>
+            <p class="sim-desc" id="scoreMessage">
+              All automation gates meet strict enterprise SLAs. Low flakiness and verified latency limits confirm build stability.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ARTIFACTS / CODE SAMPLES -->
+    <section class="section section-divider">
+      <div class="container">
+        <div class="eyebrow">Practical Implementation</div>
+        <h2 class="section-heading">How I Structure Automation & Gates</h2>
+        <p class="section-lead">
+          Representative code patterns demonstrating maintainability, resilience, and automated performance enforcement.
+        </p>
+
+        <div class="tab-bar">
+          <button class="tab-btn active" data-tab="tab1">playwright.resilience.ts</button>
+          <button class="tab-btn" data-tab="tab2">data-reconciliation.spec.ts</button>
+          <button class="tab-btn" data-tab="tab3">ci-performance-gate.yml</button>
+        </div>
+
+        <div class="code-panel">
+          <div class="code-header">// Framework Architecture Example</div>
+          
+          <pre id="tab1" class="active"><code>// Playwright Page Object pattern with self-healing fallback selectors
+import { Page, Locator, expect } from '@playwright/test';
+
+export class TransactionPage {
+  readonly page: Page;
+  readonly confirmButton: Locator;
+
+  constructor(page: Page) {
+    this.page = page;
+    // Primary accessibility selector with backup data-testid attribute
+    this.confirmButton = page.getByRole('button', { name: /confirm order/i })
+      .or(page.locator('[data-testid="btn-confirm-transaction"]'));
+  }
+
+  async submitTransaction(): Promise&lt;void&gt; {
+    await expect(this.confirmButton).toBeVisible({ timeout: 5000 });
+    await this.confirmButton.click();
+    await this.page.waitForResponse(resp =&gt; 
+      resp.url().includes('/api/v1/orders') &amp;&amp; resp.status() === 200
+    );
+  }
+}</code></pre>
+
+          <pre id="tab2"><code>// Automated ETL & API verification against database record
+import { test, expect } from '@playwright/test';
+import { executeQuery } from '../helpers/dbClient';
+
+test('Verify order creation syncs accurately with data store', async ({ request }) => {
+  const payload = { userId: 'usr_8844', amount: 1250, currency: 'USD' };
+  
+  const response = await request.post('/api/v1/checkout', { data: payload });
+  expect(response.status()).toBe(201);
+  const { transactionId } = await response.json();
+
+  // Validate state consistency in backend table
+  const records = await executeQuery(
+    `SELECT status, amount FROM transactions WHERE id = $1`, [transactionId]
+  );
+  
+  expect(records[0].status).toBe('COMPLETED');
+  expect(Number(records[0].amount)).toBe(payload.amount);
+});</code></pre>
+
+          <pre id="tab3"><code># Automated Performance Quality Gate for GitHub Actions / Azure Pipelines
+name: Performance Verification Gate
+
+on: [pull_request]
+
+jobs:
+  performance-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run Distributed JMeter Suite
+        run: |
+          jmeter -n -t tests/load-profile.jmx -l results.jtl -e -o ./report
+      - name: Enforce p95 & Error Budgets
+        run: |
+          python3 scripts/verify_thresholds.py \
+            --file results.jtl \
+            --max-p95-ms 800 \
+            --max-error-rate 0.01 \
+            --min-throughput 250</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- CLOSING ACTION -->
+    <section class="section">
+      <div class="container">
+        <div class="cta-banner">
+          <div class="cta-copy">
+            <h2>Ready to contribute from Day One</h2>
+            <p>
+              Let’s discuss how I can bring ownership, structured test automation, and robust quality engineering to SDET Tech’s team and client engagements.
+            </p>
+          </div>
+          <div class="cta-links">
+            <a class="btn btn-light" href="mailto:taniyavishwakarma8844@mail.com?subject=Taniya%20Vishwakarma%20%E2%80%94%20SDET%20Tech%20Discussion">Schedule a Conversation</a>
+            <a class="btn btn-outline" style="color: #fff; border-color: #374151;" href="https://www.linkedin.com/in/taniya-vishwakarma-7252a7203/" target="_blank" rel="noopener">LinkedIn Profile ↗</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      Taniya Vishwakarma · SDET II & QA Automation Engineer · Portfolio Case Study
+    </div>
+  </footer>
+
+  <script>
+    // Tab switching logic
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.code-panel pre').forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById(btn.dataset.tab).classList.add('active');
+      });
+    });
+
+    // Quality gate simulator logic
+    const passInput = document.getElementById('inputPass');
+    const schemaInput = document.getElementById('inputSchema');
+    const locatorInput = document.getElementById('inputLocator');
+    const latencyInput = document.getElementById('inputLatency');
+
+    function updateSimulation() {
+      const p = +passInput.value;
+      const s = +schemaInput.value;
+      const l = +locatorInput.value;
+      const lat = +latencyInput.value;
+
+      document.getElementById('valPass').textContent = p + '%';
+      document.getElementById('valSchema').textContent = s + '%';
+      document.getElementById('valLocator').textContent = l + '%';
+      document.getElementById('valLatency').textContent = lat + '%';
+
+      // Weighted score calculation
+      const score = Math.round((p * 0.35) + (s * 0.25) + (l * 0.20) + (lat * 0.20));
+      
+      const scoreEl = document.getElementById('totalScore');
+      const badgeEl = document.getElementById('scoreBadge');
+      const descEl = document.getElementById('scoreMessage');
+
+      scoreEl.textContent = score + '%';
+
+      if (score >= 94) {
+        badgeEl.textContent = 'Release Approved: Pipeline Green';
+        badgeEl.style.background = '#ECFDF5';
+        badgeEl.style.color = '#059669';
+        descEl.textContent = 'All automated verification gates meet strict enterprise SLAs. High test resilience and latency compliance confirm production readiness.';
+      } else if (score >= 88) {
+        badgeEl.textContent = 'Conditional: Minor Warning';
+        badgeEl.style.background = '#FEF3C7';
+        badgeEl.style.color = '#D97706';
+        descEl.textContent = 'Flakiness or latency drift detected in non-critical paths. Recommended for staging verification before deployment.';
+      } else {
+        badgeEl.textContent = 'Pipeline Blocked: Merge Restricted';
+        badgeEl.style.background = '#FEE2E2';
+        badgeEl.style.color = '#DC2626';
+        descEl.textContent = 'Critical threshold failure in regression or latency budget. Requires root-cause resolution prior to release.';
+      }
+    }
+
+    [passInput, schemaInput, locatorInput, latencyInput].forEach(slider => {
+      slider.addEventListener('input', updateSimulation);
+    });
+
+    updateSimulation();
+  </script>
+</body>
+</html>
